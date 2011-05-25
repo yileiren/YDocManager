@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="icos/app.png">images/icos/app.png</file>
+    </qresource>
+</RCC>

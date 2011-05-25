@@ -32,6 +32,13 @@ OTHER_FILES += \
     YRichEditor/win32/debug/YRichEditorPlugin.dll \
     YRichEditor/win32/debug/libYRichEditorPlugin.a \
     YRichEditor/win32/release/YRichEditorPlugin.dll \
-    YRichEditor/win32/release/libYRichEditorPlugin.a
+    YRichEditor/win32/release/libYRichEditorPlugin.a \
+    images/icos/app.png \
+    myapp.rc
 
-RESOURCES +=
+RC_FILE += myapp.rc
+
+RESOURCES += \
+    images.qrc
+
+

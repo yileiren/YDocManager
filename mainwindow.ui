@@ -22,6 +22,10 @@
   <property name="windowTitle">
    <string>异类人文档管理器</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/images/icos/app.png</normaloff>:/images/icos/app.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -69,6 +73,17 @@
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="action_2"/>
+    <addaction name="action_3"/>
+    <addaction name="separator"/>
+    <addaction name="action_5"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="contextMenuPolicy">
@@ -163,6 +178,26 @@
     </layout>
    </widget>
   </widget>
+  <action name="action">
+   <property name="text">
+    <string>新建文档库</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>打开文档库</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>关闭文档库</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -172,6 +207,8 @@
    <header>yricheditor.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>
