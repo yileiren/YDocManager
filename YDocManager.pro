@@ -27,3 +27,11 @@ win32{
         LIBS += D:/MyProject/YQtDesignerPlugin-build-desktop/YRichEditor/release/libYRichEditorPlugin.a
     }
 }
+
+OTHER_FILES += \
+    YRichEditor/win32/debug/YRichEditorPlugin.dll \
+    YRichEditor/win32/debug/libYRichEditorPlugin.a \
+    YRichEditor/win32/release/YRichEditorPlugin.dll \
+    YRichEditor/win32/release/libYRichEditorPlugin.a
+
+RESOURCES +=
