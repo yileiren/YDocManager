@@ -28,13 +28,8 @@ win32{
     }
 }
 
-linux{
-    debug{
-        LIBS += /home/yileiren/code/YDocManager/YRichEditor/linux/debug/yricheditor.o
-    }
-    release{
-        LIBS += /home/yileiren/code/YDocManager/YRichEditor/linux/release/yricheditor.o
-    }
+linux-g++{
+    LIBS += /home/yileiren/code/YDocManager/YRichEditor/linux/debug/yricheditor.o
 }
 
 OTHER_FILES += \
