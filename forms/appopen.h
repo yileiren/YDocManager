@@ -1,7 +1,10 @@
 #ifndef APPOPEN_H
 #define APPOPEN_H
 
+#include "ydocsyetem.h"
+
 #include <QDialog>
+#include <QFile>
 
 namespace Ui {
     class appOpen;
@@ -16,8 +19,24 @@ class AppOpen : public QDialog
     Q_OBJECT
 
 public:
+
+    /*!
+     \brief 初始化状态枚举
+
+    */
+    enum initStateEnum
+    {
+        Ready = 0, /*!< 就绪 */
+        NoInfoFile = -1, /*!< 没找到系统信息文件 */
+        ReadInfoFileError = -2 /*!< 读取信息文件出错 */
+    };
+
     explicit AppOpen(QWidget *parent = 0);
     ~AppOpen();
+
+    initStateEnum initState; /*!< 应用程序初始化状态 */
+
+    SystemInfo *systemInfo; /*!< 系统信息 */
 
 private:
     Ui::appOpen *ui;
@@ -31,12 +50,26 @@ private:
     */
     void paintEvent(QPaintEvent *e);
 
+    QFile infoFile; /*!< 系统信息文件 */
+
 private slots:
     /*!
      \brief 系统初始化方法，窗口显示后自动调用
 
     */
     void initSystem();
+
+    /*!
+     \brief 创建系统信息文件
+
+    */
+    void createInfoFile();
+
+    /*!
+     \brief 读取系统信息
+
+    */
+    void readSystemInfo();
 };
 
 #endif // APPOPEN_H
