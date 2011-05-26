@@ -1,8 +1,7 @@
 #-------------------------------------------------
 #
 # Project created by QtCreator 2011-05-25T14:58:31
-#
-#-------------------------------------------------
+# 项目名称：异类人文档管理�#-------------------------------------------------
 
 QT       += core gui
 
@@ -11,12 +10,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    forms/appopen.cpp
 
 HEADERS  += mainwindow.h \
-    yricheditor.h
+    yricheditor.h \
+    forms/appopen.h \
+    ydocsyetem.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    forms/appopen.ui
 
 win32{
     debug{
@@ -48,9 +51,12 @@ OTHER_FILES += \
     images/menu/file/new.png \
     images/menu/file/exit.png \
     images/menu/file/edit.png \
-    images/menu/file/close.png
+    images/menu/file/close.png \
+    systemInfo.xml \
+    languages/qt_zh_CN.qm
 
 RC_FILE += myapp.rc
 
 RESOURCES += \
-    images.qrc
+    images.qrc \
+    languages.qrc
