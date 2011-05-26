@@ -77,11 +77,13 @@
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="action_2"/>
-    <addaction name="action_3"/>
+    <addaction name="newDocAction"/>
+    <addaction name="openDocAction"/>
+    <addaction name="editDocAction"/>
+    <addaction name="saveDocAction"/>
+    <addaction name="closeDocAction"/>
     <addaction name="separator"/>
-    <addaction name="action_5"/>
+    <addaction name="exitAction"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -104,6 +106,13 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="newDocAction"/>
+   <addaction name="openDocAction"/>
+   <addaction name="editDocAction"/>
+   <addaction name="saveDocAction"/>
+   <addaction name="closeDocAction"/>
+   <addaction name="separator"/>
+   <addaction name="exitAction"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="dockWidget">
@@ -178,24 +187,91 @@
     </layout>
    </widget>
   </widget>
-  <action name="action">
+  <action name="newDocAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/new.png</normaloff>:/images/menu/file/new.png</iconset>
+   </property>
    <property name="text">
-    <string>新建文档库</string>
+    <string>新建</string>
+   </property>
+   <property name="toolTip">
+    <string>新建文档</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="openDocAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/open.png</normaloff>:/images/menu/file/open.png</iconset>
+   </property>
    <property name="text">
-    <string>打开文档库</string>
+    <string>打开</string>
+   </property>
+   <property name="toolTip">
+    <string>打开文档</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="closeDocAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/close.png</normaloff>:/images/menu/file/close.png</iconset>
+   </property>
    <property name="text">
-    <string>关闭文档库</string>
+    <string>关闭</string>
+   </property>
+   <property name="toolTip">
+    <string>关闭文档</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="exitAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/exit.png</normaloff>:/images/menu/file/exit.png</iconset>
+   </property>
    <property name="text">
     <string>退出</string>
+   </property>
+   <property name="toolTip">
+    <string>退出应用程序</string>
+   </property>
+  </action>
+  <action name="saveDocAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/save.png</normaloff>:/images/menu/file/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存</string>
+   </property>
+   <property name="toolTip">
+    <string>保存文档</string>
+   </property>
+  </action>
+  <action name="editDocAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/edit.png</normaloff>:/images/menu/file/edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>编辑</string>
+   </property>
+   <property name="toolTip">
+    <string>编辑文档</string>
    </property>
   </action>
  </widget>

@@ -42,7 +42,13 @@ OTHER_FILES += \
     YRichEditor/linux/libYRichEditorPlugin.so \
     YRichEditor/linux/debug/yricheditor.o \
     YRichEditor/linux/release/yricheditor.o \
-    images/icos/app.ico
+    images/icos/app.ico \
+    images/menu/file/save.png \
+    images/menu/file/open.png \
+    images/menu/file/new.png \
+    images/menu/file/exit.png \
+    images/menu/file/edit.png \
+    images/menu/file/close.png
 
 RC_FILE += myapp.rc
 

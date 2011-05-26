@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/images">
         <file alias="icos/app.png">images/icos/app.png</file>
+        <file alias="menu/file/new.png">images/menu/file/new.png</file>
+        <file alias="menu/file/open.png">images/menu/file/open.png</file>
+        <file alias="menu/file/save.png">images/menu/file/save.png</file>
+        <file alias="menu/file/close.png">images/menu/file/close.png</file>
+        <file alias="menu/file/exit.png">images/menu/file/exit.png</file>
+        <file alias="menu/file/edit.png">images/menu/file/edit.png</file>
     </qresource>
 </RCC>
