@@ -5,6 +5,7 @@
 
 #include <QDialog>
 #include <QFile>
+#include <QDir>
 
 namespace Ui {
     class appOpen;
@@ -24,19 +25,24 @@ public:
      \brief 初始化状态枚举
 
     */
-    enum initStateEnum
+    enum InitStateEnum
     {
         Ready = 0, /*!< 就绪 */
         NoInfoFile = -1, /*!< 没找到系统信息文件 */
-        ReadInfoFileError = -2 /*!< 读取信息文件出错 */
+        ReadInfoFileError = -2, /*!< 读取信息文件出错 */
+        CreateDirError = -3, /*!< 创建路径失败 */
+        NoDocInfoFile = -4,  /*!< 没有找到文档信息 */
+        DocInfoError = -5 /*!< 文档信息有错误 */
     };
 
     explicit AppOpen(QWidget *parent = 0);
     ~AppOpen();
 
-    initStateEnum initState; /*!< 应用程序初始化状态 */
+    InitStateEnum initState; /*!< 应用程序初始化状态 */
 
     SystemInfo *systemInfo; /*!< 系统信息 */
+
+    DocInfo *docInfo; /*!< 文档信息 */
 
 private:
     Ui::appOpen *ui;
@@ -70,6 +76,12 @@ private slots:
 
     */
     void readSystemInfo();
+
+    /*!
+     \brief 检查文档信息
+
+    */
+    void checkDocInfo();
 };
 
 #endif // APPOPEN_H

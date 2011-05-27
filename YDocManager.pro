@@ -12,15 +12,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    forms/appopen.cpp
+    forms/appopen.cpp \
+    forms/docinfoedit.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
     forms/appopen.h \
-    ydocsyetem.h
+    ydocsyetem.h \
+    forms/docinfoedit.h
 
 FORMS    += mainwindow.ui \
-    forms/appopen.ui
+    forms/appopen.ui \
+    forms/docinfoedit.ui
 
 win32{
     debug{
