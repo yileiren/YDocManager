@@ -13,13 +13,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     forms/appopen.cpp \
-    forms/docinfoedit.cpp
+    forms/docinfoedit.cpp \
+    appXML/docinfoxml.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
     forms/appopen.h \
     ydocsyetem.h \
-    forms/docinfoedit.h
+    forms/docinfoedit.h \
+    appXML/docinfoxml.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \

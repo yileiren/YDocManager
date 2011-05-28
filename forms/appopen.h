@@ -54,7 +54,7 @@ private:
 
      \param e 事件
     */
-    void paintEvent(QPaintEvent *e);
+    void showEvent(QShowEvent *e);
 
     QFile infoFile; /*!< 系统信息文件 */
 

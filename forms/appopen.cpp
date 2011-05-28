@@ -30,7 +30,7 @@ AppOpen::~AppOpen()
     delete this->timer;
 }
 
-void AppOpen::paintEvent(QPaintEvent *e)
+void AppOpen::showEvent(QShowEvent *e)
 {
     if(!this->isShown)
     {
@@ -90,6 +90,7 @@ void AppOpen::createInfoFile()
 
 void AppOpen::readSystemInfo()
 {
+    this->timer->stop();
     //打开文件
     if(this->infoFile.open(QFile::ReadOnly))
     {
@@ -103,15 +104,15 @@ void AppOpen::readSystemInfo()
                 QString name = xmlReader.name().toString();
                 if(name == SYSTEM_VERSION_TAG)
                 {
-                    this->systemInfo->version = xmlReader.attributes().value("value").toString();
+                    this->systemInfo->version = xmlReader.attributes().value(tr("value")).toString();
                 }
                 else if(name == SYSTEM_DOCUMENT_TAG)
                 {
-                    this->systemInfo->documentPath = xmlReader.attributes().value("value").toString();
+                    this->systemInfo->documentPath = xmlReader.attributes().value(tr("value")).toString();
                 }
                 else if(name == SYSTEM_PROGECT_FILE_TAG)
                 {
-                    this->systemInfo->progectFile = xmlReader.attributes().value("value").toString();
+                    this->systemInfo->progectFile = xmlReader.attributes().value(tr("value")).toString();
                 }
                 xmlReader.readNext();
             }
@@ -194,11 +195,12 @@ void AppOpen::readSystemInfo()
 
 void AppOpen::checkDocInfo()
 {
+    this->timer->stop();
     //检查文档信息
     QFile docInfoFile;
     docInfoFile.setFileName(this->systemInfo->progectFile);
 
-    if(docInfoFile.exists())
+    if(docInfoFile.open(QFile::ReadOnly))
     {
         //读取文档信息
         QXmlStreamReader xmlReader;
@@ -210,31 +212,31 @@ void AppOpen::checkDocInfo()
                 QString name = xmlReader.name().toString();
                 if(name == DOC_UUID_TAG)
                 {
-                    this->docInfo->uuid = xmlReader.attributes().value("value").toString();
+                    this->docInfo->uuid = xmlReader.attributes().value(tr("value")).toString();
                 }
                 else if(name == DOC_NAME_TAG)
                 {
-                    this->docInfo->name = xmlReader.attributes().value("value").toString();
+                    this->docInfo->name = xmlReader.attributes().value(tr("value")).toString();
                 }
                 else if(name == DOC_NUM_TAG)
                 {
-                    this->docInfo->num = xmlReader.attributes().value("value").toString();
+                    this->docInfo->num = xmlReader.attributes().value(tr("value")).toString();
                 }
-                else if(DOC_USER_NAME_TAG)
+                else if(name == DOC_USER_NAME_TAG)
                 {
-                    this->docInfo->userName = xmlReader.attributes().value("value").toString();
+                    this->docInfo->userName = xmlReader.attributes().value(tr("value")).toString();
                 }
-                else if(DOC_USER_NUM_TAG)
+                else if(name == DOC_USER_NUM_TAG)
                 {
-                    this->docInfo->userNum = xmlReader.attributes().value("value").toString();
+                    this->docInfo->userNum = xmlReader.attributes().value(tr("value")).toString();
                 }
-                else if(DOC_CREATE_TIME_TAG)
+                else if(name == DOC_CREATE_TIME_TAG)
                 {
-                    this->docInfo->createTime = QDateTime::fromString(xmlReader.attributes().value("value").toString(),DATE_TIME_FORMAT);
+                    this->docInfo->createTime = QDateTime::fromString(xmlReader.attributes().value(tr("value")).toString(),DATE_TIME_FORMAT);
                 }
-                else if(DOC_ROOT_XML_TAG)
+                else if(name == DOC_ROOT_XML_TAG)
                 {
-                    this->docInfo->rootXML = xmlReader.attributes().value("value").toString();
+                    this->docInfo->rootXML = xmlReader.attributes().value(tr("value")).toString();
                 }
 
                 xmlReader.readNext();
@@ -244,6 +246,7 @@ void AppOpen::checkDocInfo()
                 xmlReader.readNext();
             }
         }
+        docInfoFile.close();
         docInfoFile.close();
 
         //检查文档信息是否齐全

@@ -3,6 +3,7 @@
 #include "forms/appopen.h"
 #include "ydocsyetem.h"
 #include "forms/docinfoedit.h"
+#include "appXML/docinfoxml.h"
 
 #include <QDialog>
 #include <QTextCodec>
@@ -61,7 +62,16 @@ int main(int argc, char *argv[])
 
             if(QDialog::Accepted == returnCode)
             {
-                w.show();
+                //创建文档信息
+                if(DocInfoXML::createDocInfo(docInfo,systemInfo->progectFile))
+                {
+
+                    w.show();
+                }
+                else
+                {
+                    return 0;
+                }
             }
             else
             {

@@ -33,13 +33,13 @@ void DocInfoEdit::showEvent(QShowEvent *e)
         //创建uuid
         if(this->docInfo->uuid == tr(""))
         {
-            this->docInfo->uuid == QUuid::createUuid().toString();
+            this->docInfo->uuid = QUuid::createUuid().toString();
         }
 
         //设置文档根XML名称
         if(this->docInfo->rootXML == tr(""))
         {
-            this->docInfo->rootXML == tr(DEFINE_ROOT_DOC_XML_NAME) + tr(EXPANDED_NAME);
+            this->docInfo->rootXML = tr(DEFINE_ROOT_DOC_XML_NAME) + tr(EXPANDED_NAME);
         }
 
         //设置文档信息
@@ -144,7 +144,12 @@ void DocInfoEdit::on_lineEditUserNum_textChanged(QString str)
 
 void DocInfoEdit::on_buttonBox_accepted()
 {
-
+    //设置文档信息对象
+    this->docInfo->name = this->ui->linEditName->text();
+    this->docInfo->num = this->ui->lineEditDocNum->text();
+    this->docInfo->userName = this->ui->lineEditUserName->text();
+    this->docInfo->userNum = this->ui->lineEditUserNum->text();
+    this->docInfo->createTime = this->ui->dateTimeEditCreateTime->dateTime();
 }
 
 void DocInfoEdit::changeOKButton()
