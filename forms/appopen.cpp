@@ -1,5 +1,6 @@
 #include "appopen.h"
 #include "ui_appopen.h"
+#include "appXML/docinfoxml.h"
 
 #include <QTimer>
 #include <QMessageBox>
@@ -196,80 +197,33 @@ void AppOpen::readSystemInfo()
 void AppOpen::checkDocInfo()
 {
     this->timer->stop();
-    //检查文档信息
-    QFile docInfoFile;
-    docInfoFile.setFileName(this->systemInfo->progectFile);
 
-    if(docInfoFile.open(QFile::ReadOnly))
+    //读取文档信息
+    DocInfo d = DocInfoXML::readDocInfo(this->systemInfo->progectFile);
+
+    //检查文档信息是否齐全
+    if(d.name == tr("") || //文档名不存在
+            d.uuid == tr("") || //uuid不存在
+            d.num == tr("") || //文档编号不存在
+            d.userName == tr("") || //用户名不存在
+            d.userNum == tr("") || //用户编号不存在
+            d.rootXML == tr("") || //文档根XML不存在
+            d.createTime == QDateTime::fromString(DOC_DEFINE_TIME,DATE_TIME_FORMAT)) //创建时间不存在
     {
-        //读取文档信息
-        QXmlStreamReader xmlReader;
-        xmlReader.setDevice(&docInfoFile);
-        while(!xmlReader.atEnd())
-        {
-            if(xmlReader.isStartElement())
-            {
-                QString name = xmlReader.name().toString();
-                if(name == DOC_UUID_TAG)
-                {
-                    this->docInfo->uuid = xmlReader.attributes().value(tr("value")).toString();
-                }
-                else if(name == DOC_NAME_TAG)
-                {
-                    this->docInfo->name = xmlReader.attributes().value(tr("value")).toString();
-                }
-                else if(name == DOC_NUM_TAG)
-                {
-                    this->docInfo->num = xmlReader.attributes().value(tr("value")).toString();
-                }
-                else if(name == DOC_USER_NAME_TAG)
-                {
-                    this->docInfo->userName = xmlReader.attributes().value(tr("value")).toString();
-                }
-                else if(name == DOC_USER_NUM_TAG)
-                {
-                    this->docInfo->userNum = xmlReader.attributes().value(tr("value")).toString();
-                }
-                else if(name == DOC_CREATE_TIME_TAG)
-                {
-                    this->docInfo->createTime = QDateTime::fromString(xmlReader.attributes().value(tr("value")).toString(),DATE_TIME_FORMAT);
-                }
-                else if(name == DOC_ROOT_XML_TAG)
-                {
-                    this->docInfo->rootXML = xmlReader.attributes().value(tr("value")).toString();
-                }
-
-                xmlReader.readNext();
-            }
-            else
-            {
-                xmlReader.readNext();
-            }
-        }
-        docInfoFile.close();
-        docInfoFile.close();
-
-        //检查文档信息是否齐全
-        if(this->docInfo->name == tr("") || //文档名不存在
-                this->docInfo->uuid == tr("") || //uuid不存在
-                this->docInfo->num == tr("") || //文档编号不存在
-                this->docInfo->userName == tr("") || //用户名不存在
-                this->docInfo->userNum == tr("") || //用户编号不存在
-                this->docInfo->rootXML == tr("") || //文档根XML不存在
-                this->docInfo->createTime == QDateTime::fromString(DOC_DEFINE_TIME,DATE_TIME_FORMAT)) //创建时间不存在
-        {
-            //文档信息有误
-            this->initState = DocInfoError;
-            this->reject();
-        }
-        else
-        {
-            this->accept();
-        }
+        //文档信息有误
+        this->initState = DocInfoError;
+        this->reject();
     }
     else
     {
-        this->initState = NoDocInfoFile;
-        this->reject();
+        //拷贝文档信息
+        this->docInfo->createTime = d.createTime;
+        this->docInfo->name = d.name;
+        this->docInfo->num = d.num;
+        this->docInfo->rootXML = d.rootXML;
+        this->docInfo->userName = d.userName;
+        this->docInfo->userNum = d.userNum;
+        this->docInfo->uuid = d.uuid;
+        this->accept();
     }
 }

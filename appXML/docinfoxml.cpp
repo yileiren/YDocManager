@@ -64,3 +64,72 @@ bool DocInfoXML::createDocInfo(const DocInfo *docInfo,const QString &path)
     file.close();
     return true;
 }
+
+DocInfo DocInfoXML::readDocInfo(const QString &path)
+{
+    //检查文档信息
+    QFile docInfoFile;
+    docInfoFile.setFileName(path);
+
+    //初始化文档信息
+    DocInfo docInfo;
+    docInfo.createTime = QDateTime::fromString(QObject::tr(DOC_DEFINE_TIME),QObject::tr(DATE_TIME_FORMAT));
+    docInfo.name = QObject::tr("");
+    docInfo.num = QObject::tr("");
+    docInfo.rootXML = QObject::tr("");
+    docInfo.userName = QObject::tr("");
+    docInfo.userNum = QObject::tr("");
+    docInfo.uuid = QObject::tr("");
+
+    if(docInfoFile.open(QFile::ReadOnly))
+    {
+        //读取文档信息
+        QXmlStreamReader xmlReader;
+        xmlReader.setDevice(&docInfoFile);
+        while(!xmlReader.atEnd())
+        {
+            if(xmlReader.isStartElement())
+            {
+                QString name = xmlReader.name().toString();
+                if(name == DOC_UUID_TAG)
+                {
+                    docInfo.uuid = xmlReader.attributes().value(QObject::tr("value")).toString();
+                }
+                else if(name == DOC_NAME_TAG)
+                {
+                    docInfo.name = xmlReader.attributes().value(QObject::tr("value")).toString();
+                }
+                else if(name == DOC_NUM_TAG)
+                {
+                    docInfo.num = xmlReader.attributes().value(QObject::tr("value")).toString();
+                }
+                else if(name == DOC_USER_NAME_TAG)
+                {
+                    docInfo.userName = xmlReader.attributes().value(QObject::tr("value")).toString();
+                }
+                else if(name == DOC_USER_NUM_TAG)
+                {
+                    docInfo.userNum = xmlReader.attributes().value(QObject::tr("value")).toString();
+                }
+                else if(name == DOC_CREATE_TIME_TAG)
+                {
+                    docInfo.createTime = QDateTime::fromString(xmlReader.attributes().value(QObject::tr("value")).toString(),DATE_TIME_FORMAT);
+                }
+                else if(name == DOC_ROOT_XML_TAG)
+                {
+                    docInfo.rootXML = xmlReader.attributes().value(QObject::tr("value")).toString();
+                }
+
+                xmlReader.readNext();
+            }
+            else
+            {
+                xmlReader.readNext();
+            }
+        }
+        docInfoFile.close();
+        docInfoFile.close();
+    }
+
+    return docInfo;
+}

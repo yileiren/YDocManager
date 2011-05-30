@@ -22,6 +22,14 @@ public:
      \return 成功返回true，否则返回false
     */
     static bool createDocInfo(const DocInfo *docInfo,const QString &path);
+
+    /*!
+     \brief 读取文档信息
+
+     \param path 路径
+     \return 文档信息
+    */
+    static DocInfo readDocInfo(const QString &path);
 };
 
 #endif // DOCINFOXML_H
