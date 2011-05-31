@@ -60,7 +60,9 @@ OTHER_FILES += \
     images/menu/file/close.png \
     systemInfo.xml \
     languages/qt_zh_CN.qm \
-    images/appWindow/initWindowBackImage.png
+    images/appWindow/initWindowBackImage.png \
+    images/tree/doc.png \
+    images/tree/dir.png
 
 RC_FILE += myapp.rc
 

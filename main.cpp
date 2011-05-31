@@ -14,20 +14,20 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     //初始化系统信息
-    SystemInfo *systemInfo = new SystemInfo;
-    systemInfo->documentPath = QObject::tr("");
-    systemInfo->progectFile = QObject::tr("");
-    systemInfo->version = QObject::tr("");
+    SystemInfo systemInfo;
+    systemInfo.documentPath = QObject::tr("");
+    systemInfo.progectFile = QObject::tr("");
+    systemInfo.version = QObject::tr("");
 
     //初始化文档信息
-    DocInfo *docInfo = new DocInfo;
-    docInfo->createTime = QDateTime::fromString(QObject::tr(DOC_DEFINE_TIME),QObject::tr(DATE_TIME_FORMAT));
-    docInfo->name = QObject::tr("");
-    docInfo->num = QObject::tr("");
-    docInfo->rootXML = QObject::tr("");
-    docInfo->userName = QObject::tr("");
-    docInfo->userNum = QObject::tr("");
-    docInfo->uuid = QObject::tr("");
+    DocInfo docInfo;
+    docInfo.createTime = QDateTime::fromString(QObject::tr(DOC_DEFINE_TIME),QObject::tr(DATE_TIME_FORMAT));
+    docInfo.name = QObject::tr("");
+    docInfo.num = QObject::tr("");
+    docInfo.rootXML = QObject::tr("");
+    docInfo.userName = QObject::tr("");
+    docInfo.userNum = QObject::tr("");
+    docInfo.uuid = QObject::tr("");
 
     //设置编码集格式
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF8"));
@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
 
     //系统初始化窗口
     AppOpen appOpen;
-    appOpen.systemInfo = systemInfo;
-    appOpen.docInfo = docInfo;
+    appOpen.systemInfo = &systemInfo;
+    appOpen.docInfo = &docInfo;
     appOpen.setWindowFlags(Qt::FramelessWindowHint);
     int returnCode = appOpen.exec();
 
@@ -48,6 +48,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     if(QDialog::Accepted == returnCode)
     {
+        w.docInfo = &docInfo;
+        w.systemInfo = &systemInfo;
         w.show();
     }
     else
@@ -57,14 +59,16 @@ int main(int argc, char *argv[])
         {
             //编辑文档信息
             DocInfoEdit docInfoEdit;
-            docInfoEdit.docInfo = docInfo;
+            docInfoEdit.docInfo = &docInfo;
             returnCode = docInfoEdit.exec();
 
             if(QDialog::Accepted == returnCode)
             {
                 //创建文档信息
-                if(DocInfoXML::createDocInfo(docInfo,systemInfo->progectFile))
+                if(DocInfoXML::createDocInfo(&docInfo,systemInfo.progectFile))
                 {
+                    w.docInfo = &docInfo;
+                    w.systemInfo = &systemInfo;
                     w.show();
                 }
                 else

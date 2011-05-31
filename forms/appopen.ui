@@ -29,7 +29,7 @@
    <string>打开异类人文档管理器</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">image: url(:/images/appWindow/backImage.png);</string>
+   <string notr="true"/>
   </property>
   <property name="modal">
    <bool>false</bool>
@@ -39,15 +39,21 @@
     <rect>
      <x>4</x>
      <y>295</y>
-     <width>350</width>
+     <width>411</width>
      <height>20</height>
     </rect>
    </property>
    <property name="contextMenuPolicy">
     <enum>Qt::NoContextMenu</enum>
    </property>
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <property name="styleSheet">
-    <string notr="true">image: url(&quot;&quot;);</string>
+    <string notr="true"/>
    </property>
    <property name="lineWidth">
     <number>2</number>
@@ -62,6 +68,24 @@
     <number>0</number>
    </property>
   </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>420</width>
+     <height>315</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/appWindow/backImage.png);</string>
+   </property>
+  </widget>
+  <zorder>widget</zorder>
+  <zorder>initText</zorder>
  </widget>
  <resources/>
  <connections/>

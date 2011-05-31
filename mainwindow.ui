@@ -58,7 +58,7 @@
        </size>
       </property>
       <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
+       <enum>Qt::DefaultContextMenu</enum>
       </property>
      </widget>
     </item>
@@ -114,7 +114,11 @@
    <addaction name="separator"/>
    <addaction name="exitAction"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+  </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="minimumSize">
     <size>
@@ -174,6 +178,9 @@
      </property>
      <item row="0" column="0">
       <widget class="QTreeWidget" name="treeWidget">
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
        <attribute name="headerVisible">
         <bool>false</bool>
        </attribute>
@@ -196,7 +203,7 @@
     <string>新建</string>
    </property>
    <property name="toolTip">
-    <string>新建文档</string>
+    <string>新建文档或目录</string>
    </property>
   </action>
   <action name="openDocAction">
