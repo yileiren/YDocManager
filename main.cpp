@@ -65,7 +65,6 @@ int main(int argc, char *argv[])
                 //创建文档信息
                 if(DocInfoXML::createDocInfo(docInfo,systemInfo->progectFile))
                 {
-
                     w.show();
                 }
                 else

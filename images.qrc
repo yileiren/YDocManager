@@ -7,5 +7,6 @@
         <file alias="menu/file/close.png">images/menu/file/close.png</file>
         <file alias="menu/file/exit.png">images/menu/file/exit.png</file>
         <file alias="menu/file/edit.png">images/menu/file/edit.png</file>
+        <file alias="appWindow/backImage.png">images/appWindow/initWindowBackImage.png</file>
     </qresource>
 </RCC>

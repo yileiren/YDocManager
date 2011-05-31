@@ -128,8 +128,104 @@ DocInfo DocInfoXML::readDocInfo(const QString &path)
             }
         }
         docInfoFile.close();
-        docInfoFile.close();
     }
 
     return docInfo;
+}
+
+bool DocInfoXML::createFilesInfo(const std::vector<FileInfo> &filesInfo, const QString &path)
+{
+
+    QFile file(path);
+    if(!file.open(QFile::WriteOnly|QFile::Text))
+    {
+        return false;
+    }
+
+    QXmlStreamWriter *xmlWriter = new QXmlStreamWriter(&file);
+    xmlWriter->setAutoFormatting(true);
+    xmlWriter->writeStartDocument();
+
+    //写入跟节点
+    xmlWriter->writeStartElement(FILES_INFO_ROOT_TAG);
+
+    //循环写入文件信息
+    for(std::vector<FileInfo>::size_type s = 0;s < filesInfo.size();s++)
+    {
+        if(FileInfo::doc == filesInfo[s].fileType)
+        {
+            xmlWriter->writeStartElement(FILES_TYPE_FILE_TAG);
+            xmlWriter->writeAttribute(QObject::tr("FILES_NAME_TAG"),filesInfo[s].name);
+            xmlWriter->writeAttribute(QObject::tr("FILES_TITLE_TAG"),filesInfo[s].title);
+            xmlWriter->writeAttribute(QObject::tr("FILES_CREATE_TIME_TAG"),filesInfo[s].createTime.toString(QObject::tr(DATE_TIME_FORMAT)));
+            xmlWriter->writeEndElement();
+        }
+        else
+        {
+            xmlWriter->writeStartElement(FILES_TYPE_DIR_TAG);
+            xmlWriter->writeAttribute(QObject::tr("FILES_NAME_TAG"),filesInfo[s].name);
+            xmlWriter->writeAttribute(QObject::tr("FILES_TITLE_TAG"),filesInfo[s].title);
+            xmlWriter->writeAttribute(QObject::tr("FILES_CREATE_TIME_TAG"),filesInfo[s].createTime.toString(QObject::tr(DATE_TIME_FORMAT)));
+            xmlWriter->writeEndElement();
+        }
+
+    }
+
+    xmlWriter->writeEndElement();
+
+    xmlWriter->writeEndDocument();
+    delete xmlWriter;
+    file.close();
+    return true;
+}
+
+std::vector<FileInfo> DocInfoXML::readFilesInfo(const QString &path)
+{
+    //检查文档信息
+    QFile docInfoFile;
+    docInfoFile.setFileName(path);
+
+    std::vector<FileInfo> filesInfo;
+
+    //打开文件
+    if(docInfoFile.open(QFile::ReadOnly))
+    {
+        //读取文档信息
+        QXmlStreamReader xmlReader;
+        xmlReader.setDevice(&docInfoFile);
+        while(!xmlReader.atEnd())
+        {
+            FileInfo fileInfo;
+
+            if(xmlReader.isStartElement())
+            {
+                QString name = xmlReader.name().toString();
+                if(name == FILES_TYPE_FILE_TAG)
+                {
+                    fileInfo.fileType = FileInfo::doc;
+                    fileInfo.name = xmlReader.attributes().value(QObject::tr(FILES_NAME_TAG)).toString();
+                    fileInfo.title = xmlReader.attributes().value(QObject::tr(FILES_TITLE_TAG)).toString();
+                    fileInfo.createTime = QDateTime::fromString(xmlReader.attributes().value(QObject::tr(FILES_CREATE_TIME_TAG)).toString(),DATE_TIME_FORMAT);
+                    filesInfo.push_back(fileInfo);
+                }
+                else if(name == FILES_TYPE_DIR_TAG)
+                {
+                    fileInfo.fileType = FileInfo::dir;
+                    fileInfo.name = xmlReader.attributes().value(QObject::tr(FILES_NAME_TAG)).toString();
+                    fileInfo.title = xmlReader.attributes().value(QObject::tr(FILES_TITLE_TAG)).toString();
+                    fileInfo.createTime = QDateTime::fromString(xmlReader.attributes().value(QObject::tr(FILES_CREATE_TIME_TAG)).toString(),DATE_TIME_FORMAT);
+                    filesInfo.push_back(fileInfo);
+                }
+
+                xmlReader.readNext();
+            }
+            else
+            {
+                xmlReader.readNext();
+            }
+        }
+        docInfoFile.close();
+    }
+
+    return filesInfo;
 }

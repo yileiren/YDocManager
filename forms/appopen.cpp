@@ -38,7 +38,7 @@ void AppOpen::showEvent(QShowEvent *e)
         this->isShown = true;
 
         //启动定时器
-        timer->start(500);
+        timer->start(1000);
     }
 }
 

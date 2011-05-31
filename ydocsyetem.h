@@ -75,15 +75,56 @@ typedef struct
 //文档创建时间
 #define DOC_CREATE_TIME_TAG "createTime"
 
-//文档根节点XML路径
+//文档信息根节点XML标签
 #define DOC_ROOT_XML_TAG "rootXML"
 
-//默认的跟节点XML名称
-#define DEFINE_ROOT_DOC_XML_NAME "root"
+//默认的文档信息跟节点XML名称
+#define DEFINE_ROOT_DOC_XML_NAME "docs"
 
 //文档创建默认时间，当等于该时间时说明时间有问题
 #define DOC_DEFINE_TIME "1900-01-01 0:00:00"
 
 //日期时间格式
 #define DATE_TIME_FORMAT "yyyy-MM-dd H:mm:ss"
+
+/*!
+ \brief 文件信息结构体
+
+*/
+typedef struct
+{
+    /*!
+     \brief 文档信息中的文件类型
+
+    */
+    enum FileType
+    {
+        doc, /*!< 文档 */
+        dir /*!< 目录 */
+    };
+
+    FileType fileType; /*!< 文件类型 */
+    QString name; /*!< 文件名 */
+    QString title; /*!< 文件标题 */
+    QDateTime createTime; /*!< 创建时间 */
+}FileInfo;
+
+//文件信息根节点
+#define FILES_INFO_ROOT_TAG "filesInfo"
+
+//文件信息类型是文档的节点名称
+#define FILES_TYPE_FILE_TAG "doc"
+
+//文件信息类型是目录的节点名称
+#define FILES_TYPE_DIR_TAG "dir"
+
+//文件获文件夹存储的文件名称节点
+#define FILES_NAME_TAG "name"
+
+//文档标题
+#define FILES_TITLE_TAG "title"
+
+//创建时间节点
+#define FILES_CREATE_TIME_TAG "createTime"
+
 #endif // YDOCSYETEM_H
