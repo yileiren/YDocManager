@@ -31,8 +31,8 @@ void MainWindow::on_newDocAction_triggered()
 void MainWindow::paintEvent(QPaintEvent *e)
 {
     //窗体重绘时自动改变控件
-    this->statusLabel.setMinimumSize(this->ui->statusBar->width() - 300,10);
-    this->statusLabel.setMaximumSize(this->ui->statusBar->width() - 300,10);
+    this->statusLabel.setMinimumSize(this->ui->statusBar->width() - 500,10);
+    this->statusLabel.setMaximumSize(this->ui->statusBar->width() - 500,20);
 }
 
 void MainWindow::showEvent(QShowEvent *e)
@@ -42,18 +42,22 @@ void MainWindow::showEvent(QShowEvent *e)
         //创建状态显示设置状态显示Label
         this->statusLabel.setParent(this->ui->statusBar);
         this->statusLabel.setText(tr("就绪"));
+        this->statusLabel.setMinimumSize(this->ui->statusBar->width() - 500,10);
+        this->statusLabel.setMaximumSize(this->ui->statusBar->width() - 500,20);
         this->ui->statusBar->addWidget(&this->statusLabel);
 
         //显示文档名称
         this->nameLabel.setParent(this->ui->statusBar);
         this->nameLabel.setText(tr("文档名称：") + this->docInfo->name);
-        this->nameLabel.setMinimumSize(130,10);
+        this->nameLabel.setMinimumSize(200,10);
+        this->nameLabel.setMaximumSize(200,20);
         this->ui->statusBar->addWidget(&this->nameLabel);
 
         //显示用户名称
         this->userNameLabel.setParent(this->ui->statusBar);
         this->userNameLabel.setText(tr("用户名称：") + this->docInfo->userName);
-        this->userNameLabel.setMinimumSize(130,10);
+        this->userNameLabel.setMinimumSize(200,10);
+        this->userNameLabel.setMaximumSize(200,20);
         this->ui->statusBar->addWidget(&this->userNameLabel);
     }
 }

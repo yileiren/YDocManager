@@ -83,6 +83,19 @@
    <property name="styleSheet">
     <string notr="true">image: url(:/images/appWindow/backImage.png);</string>
    </property>
+   <widget class="QWidget" name="widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>303</x>
+      <y>8</y>
+      <width>110</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/logo.gif);</string>
+    </property>
+   </widget>
   </widget>
   <zorder>widget</zorder>
   <zorder>initText</zorder>

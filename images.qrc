@@ -10,5 +10,6 @@
         <file alias="appWindow/backImage.png">images/appWindow/initWindowBackImage.png</file>
         <file alias="tree/dir.png">images/tree/dir.png</file>
         <file alias="tree/doc.png">images/tree/doc.png</file>
+        <file alias="logo.gif">images/logo.gif</file>
     </qresource>
 </RCC>

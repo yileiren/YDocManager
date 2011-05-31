@@ -62,7 +62,9 @@ OTHER_FILES += \
     languages/qt_zh_CN.qm \
     images/appWindow/initWindowBackImage.png \
     images/tree/doc.png \
-    images/tree/dir.png
+    images/tree/dir.png \
+    images/logo.gif \
+    images/appWindow/initWindowBackImage.psd
 
 RC_FILE += myapp.rc
 
