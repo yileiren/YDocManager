@@ -39,7 +39,7 @@ void DocInfoEdit::showEvent(QShowEvent *e)
         //设置文档根XML名称
         if(this->docInfo->rootXML == tr(""))
         {
-            this->docInfo->rootXML = tr(DEFINE_ROOT_DOC_XML_NAME) + tr(EXPANDED_NAME);
+            this->docInfo->rootXML = tr(DEFINE_ROOT_DOC_XML_NAME) + tr(DEFINE_DOC_INFO_XML_EXPANDED_NAME);
         }
 
         //设置文档信息

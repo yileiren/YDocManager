@@ -41,11 +41,24 @@ private:
     QLabel userNameLabel; /*!< 在状态栏显示用户名称 */
 
     /*!
+     \brief 读取根节点，如果没有创建跟节点的XML自动创建空的XML
+
+    */
+    void createRootItem();
+
+    /*!
      \brief 读取子节点，一次读取该节点下两层节点数据
 
      \param parent 父节点
     */
     void readChildItem(QTreeWidgetItem * parent);
+
+    /*!
+     \brief 将文档节点信息写入XML，该方法只写当前节点下一级所有节点的信息
+
+     \param item 节点
+    */
+    bool writeDocInfoXML(QTreeWidgetItem * item);
 
     void paintEvent(QPaintEvent * e);
 

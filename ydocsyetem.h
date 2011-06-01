@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDateTime>
+#include <QMetaType>
 
 //系统信息文件路径
 #define SYSTEM_INFO_FILE "systemInfo.xml"
@@ -81,6 +82,9 @@ typedef struct
 //默认的文档信息跟节点XML名称
 #define DEFINE_ROOT_DOC_XML_NAME "docs"
 
+//文档信息XML扩展名
+#define DEFINE_DOC_INFO_XML_EXPANDED_NAME ".info"
+
 //文档创建默认时间，当等于该时间时说明时间有问题
 #define DOC_DEFINE_TIME "1900-01-01 0:00:00"
 
@@ -108,6 +112,8 @@ typedef struct
     QString title; /*!< 文件标题 */
     QDateTime createTime; /*!< 创建时间 */
 }FileInfo;
+Q_DECLARE_METATYPE(FileInfo);
+Q_DECLARE_METATYPE(FileInfo *);
 
 //文件信息根节点
 #define FILES_INFO_ROOT_TAG "filesInfo"
