@@ -48,7 +48,12 @@ void MainWindow::readChildItem(QTreeWidgetItem *parent)
             {
                 item->setIcon(0,QIcon(tr(":/images/tree/doc.png")));
             }
-            item->setData(1,0,QVariant::fromValue(&filesInfo[s]));
+            FileInfo *info = new FileInfo;
+            info->createTime = filesInfo[s].createTime;
+            info->fileType = filesInfo[s].fileType;
+            info->name = filesInfo[s].name;
+            info->title = filesInfo[s].title;
+            item->setData(1,0,QVariant::fromValue(info));
 
         }
     }
