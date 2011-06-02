@@ -14,18 +14,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     forms/appopen.cpp \
     forms/docinfoedit.cpp \
-    appXML/docinfoxml.cpp
+    appXML/docinfoxml.cpp \
+    forms/editfileinfo.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
     forms/appopen.h \
     ydocsyetem.h \
     forms/docinfoedit.h \
-    appXML/docinfoxml.h
+    appXML/docinfoxml.h \
+    forms/editfileinfo.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \
-    forms/docinfoedit.ui
+    forms/docinfoedit.ui \
+    forms/editfileinfo.ui
 
 win32{
     debug{

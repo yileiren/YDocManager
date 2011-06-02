@@ -60,8 +60,6 @@ private:
     */
     bool writeDocInfoXML(QTreeWidgetItem * item);
 
-    void paintEvent(QPaintEvent * e);
-
     void showEvent(QShowEvent * e);
 };
 

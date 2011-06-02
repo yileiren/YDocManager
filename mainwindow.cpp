@@ -2,8 +2,10 @@
 #include "ui_mainwindow.h"
 
 #include "appXML/docinfoxml.h"
+#include "forms/editfileinfo.h"
 
 #include <QDesktopWidget>
+#include <QMessageBox>
 #include <QFile>
 #include <QDir>
 
@@ -129,14 +131,26 @@ bool MainWindow::writeDocInfoXML(QTreeWidgetItem *item)
 
 void MainWindow::on_newDocAction_triggered()
 {
-
-}
-
-void MainWindow::paintEvent(QPaintEvent *e)
-{
-    //窗体重绘时自动改变控件
-    this->statusLabel.setMinimumSize(this->ui->statusBar->width() - 500,10);
-    this->statusLabel.setMaximumSize(this->ui->statusBar->width() - 500,20);
+    //判断选中的节点
+    if(this->ui->treeWidget->selectedItems().count() > 0)
+    {
+        if(FileInfo::dir == this->ui->treeWidget->selectedItems().at(0)->data(1,0).value<FileInfo *>()->fileType)
+        {
+            EditFileInfo editFileInfo;
+            if(QDialog::Accepted == editFileInfo.exec())
+            {}
+        }
+        else
+        {
+            QMessageBox::information(this,tr("提示！"),tr("请选中一个目录节点！"),QMessageBox::Ok);
+            return;
+        }
+    }
+    else
+    {
+        QMessageBox::information(this,tr("提示！"),tr("请选中一个目录节点！"),QMessageBox::Ok);
+        return;
+    }
 }
 
 void MainWindow::showEvent(QShowEvent *e)
