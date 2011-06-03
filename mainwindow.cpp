@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QDir>
 #include <QTextStream>
+#include <exception>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -59,6 +60,9 @@ void MainWindow::readChildItem(QTreeWidgetItem *parent)
             info->title = filesInfo[s].title;
             item->setData(1,0,QVariant::fromValue(info));
 
+            this->readChildItem(item);
+
+            this->statusLabel.setText(tr("完成"));
         }
     }
 }
@@ -68,11 +72,40 @@ void MainWindow::readSeccendChildItem(QTreeWidgetItem *parent)
     this->statusLabel.setText(tr("循环读取子节点..."));
     for(int i = 0;i < parent->childCount();i++)
     {
-        if(FileInfo::dir == parent->data(1,0).value<FileInfo *>()->fileType)
+        if(FileInfo::dir == parent->child(i)->data(1,0).value<FileInfo *>()->fileType)
         {
             this->readChildItem(parent->child(i));
         }
     }
+    this->statusLabel.setText(tr("完成"));
+}
+
+void MainWindow::deleteChildItem(QTreeWidgetItem *parent)
+{
+    this->statusLabel.setText(tr("循环销毁子节点..."));
+    int childCount = parent->childCount();
+    for(int i = 0;i < childCount;i++)
+    {
+        //删除子节点
+        this->deleteChildItem(parent->child(0));
+        //销毁文件信息
+        QTreeWidgetItem *childItem = parent->child(0);
+        parent->removeChild(childItem);
+        delete childItem->data(1,0).value<FileInfo *>();
+        delete childItem;
+    }
+    this->statusLabel.setText(tr("成功"));
+}
+
+void MainWindow::deleteSeccendChildItem(QTreeWidgetItem *parent)
+{
+    this->statusLabel.setText(tr("循环销二级节点..."));
+    for(int i = 0;i < parent->childCount();i++)
+    {
+        this->deleteChildItem(parent->child(i));
+
+    }
+    this->statusLabel.setText(tr("成功"));
 }
 
 bool MainWindow::writeDocInfoXML(const QTreeWidgetItem *item)
@@ -273,7 +306,6 @@ void MainWindow::createRootItem()
     if(rootInfo.exists())
     {
         this->readChildItem(this->rootItem);
-        this->statusLabel.setText(tr("读取二级节点..."));
     }
     else
     {
@@ -284,17 +316,17 @@ void MainWindow::createRootItem()
 
 void MainWindow::on_openDocAction_triggered()
 {
-    this->statusLabel.setText(tr("dd"));
+    //this->deleteSeccendChildItem();
 }
 
 void MainWindow::on_treeWidget_itemExpanded(QTreeWidgetItem* item)
 {
-    QMessageBox::information(this,tr("提示！"),tr("ee"),QMessageBox::Ok);
+    //this->readSeccendChildItem(this->rootItem);
 }
 
 void MainWindow::on_treeWidget_itemCollapsed(QTreeWidgetItem* item)
 {
-    QMessageBox::information(this,tr("提示！"),tr("d"),QMessageBox::Ok);
+    //this->deleteSeccendChildItem(item);
 }
 
 bool MainWindow::writeDocFile(const FileInfo *fileInfo)

@@ -67,6 +67,20 @@ private:
     void readSeccendChildItem(QTreeWidgetItem *parent);
 
     /*!
+     \brief 销毁子节点
+
+     \param parent 父节点
+    */
+    void deleteChildItem(QTreeWidgetItem *parent);
+
+    /*!
+     \brief 销毁二级节点
+
+     \param parent 父节点
+    */
+    void deleteSeccendChildItem(QTreeWidgetItem *parent);
+
+    /*!
      \brief 将文档节点信息写入XML，该方法只写当前节点下一级所有节点的信息
 
      \param item 节点
