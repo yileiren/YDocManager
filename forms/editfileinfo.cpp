@@ -36,6 +36,14 @@ void EditFileInfo::showEvent(QShowEvent *e)
             this->fileInfo->createTime = QDateTime::currentDateTime();
             this->fileInfo->fileType = FileInfo::doc;
             this->fileInfo->name = QUuid::createUuid().toString();
+            if(this->parentFileInfo->path != tr(""))
+            {
+                this->fileInfo->path = this->parentFileInfo->path + this->parentFileInfo->name + tr("/");
+            }
+            else
+            {
+                this->fileInfo->path = this->parentFileInfo->name + tr("/");
+            }
             this->fileInfo->title = tr("");
         }
         this->ui->lineEditTitle->setText(this->fileInfo->title);

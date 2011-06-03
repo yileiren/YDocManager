@@ -109,6 +109,7 @@ typedef struct
 
     FileType fileType; /*!< 文件类型 */
     QString name; /*!< 文件名 */
+    QString path; /*!< 所在路径 */
     QString title; /*!< 文件标题 */
     QDateTime createTime; /*!< 创建时间 */
 }FileInfo;
@@ -126,6 +127,9 @@ Q_DECLARE_METATYPE(FileInfo *);
 
 //文件获文件夹存储的文件名称节点
 #define FILES_NAME_TAG "name"
+
+//文件或文件夹所在路径
+#define FILES_PATH_TAG "path"
 
 //文档标题
 #define FILES_TITLE_TAG "title"

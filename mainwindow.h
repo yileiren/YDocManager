@@ -27,6 +27,12 @@ public:
 private slots:
     void on_newDocAction_triggered();
 
+    void on_openDocAction_triggered();
+
+    void on_treeWidget_itemExpanded(QTreeWidgetItem* item);
+
+    void on_treeWidget_itemCollapsed(QTreeWidgetItem* item);
+
 private:
     Ui::MainWindow *ui;
 
@@ -47,18 +53,32 @@ private:
     void createRootItem();
 
     /*!
-     \brief 读取子节点，一次读取该节点下两层节点数据
+     \brief 读取子节点
 
      \param parent 父节点
     */
     void readChildItem(QTreeWidgetItem * parent);
 
     /*!
+     \brief 读二级节点
+
+     \param parent 父节点
+    */
+    void readSeccendChildItem(QTreeWidgetItem *parent);
+
+    /*!
      \brief 将文档节点信息写入XML，该方法只写当前节点下一级所有节点的信息
 
      \param item 节点
     */
-    bool writeDocInfoXML(QTreeWidgetItem * item);
+    bool writeDocInfoXML(const QTreeWidgetItem * item);
+
+    /*!
+     \brief 写入文档
+
+     \param fileInfo 文档信息
+    */
+    bool writeDocFile(const FileInfo *fileInfo);
 
     void showEvent(QShowEvent * e);
 };

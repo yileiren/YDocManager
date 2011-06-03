@@ -155,19 +155,17 @@ bool DocInfoXML::createFilesInfo(const std::vector<FileInfo> &filesInfo, const Q
         if(FileInfo::doc == filesInfo[s].fileType)
         {
             xmlWriter->writeStartElement(FILES_TYPE_FILE_TAG);
-            xmlWriter->writeAttribute(QObject::tr("FILES_NAME_TAG"),filesInfo[s].name);
-            xmlWriter->writeAttribute(QObject::tr("FILES_TITLE_TAG"),filesInfo[s].title);
-            xmlWriter->writeAttribute(QObject::tr("FILES_CREATE_TIME_TAG"),filesInfo[s].createTime.toString(QObject::tr(DATE_TIME_FORMAT)));
-            xmlWriter->writeEndElement();
         }
         else
         {
             xmlWriter->writeStartElement(FILES_TYPE_DIR_TAG);
-            xmlWriter->writeAttribute(QObject::tr("FILES_NAME_TAG"),filesInfo[s].name);
-            xmlWriter->writeAttribute(QObject::tr("FILES_TITLE_TAG"),filesInfo[s].title);
-            xmlWriter->writeAttribute(QObject::tr("FILES_CREATE_TIME_TAG"),filesInfo[s].createTime.toString(QObject::tr(DATE_TIME_FORMAT)));
-            xmlWriter->writeEndElement();
         }
+
+        xmlWriter->writeAttribute(QObject::tr(FILES_NAME_TAG),filesInfo[s].name);
+        xmlWriter->writeAttribute(QObject::tr(FILES_PATH_TAG),filesInfo[s].path);
+        xmlWriter->writeAttribute(QObject::tr(FILES_TITLE_TAG),filesInfo[s].title);
+        xmlWriter->writeAttribute(QObject::tr(FILES_CREATE_TIME_TAG),filesInfo[s].createTime.toString(QObject::tr(DATE_TIME_FORMAT)));
+        xmlWriter->writeEndElement();
 
     }
 
@@ -204,6 +202,7 @@ std::vector<FileInfo> DocInfoXML::readFilesInfo(const QString &path)
                 {
                     fileInfo.fileType = FileInfo::doc;
                     fileInfo.name = xmlReader.attributes().value(QObject::tr(FILES_NAME_TAG)).toString();
+                    fileInfo.path = xmlReader.attributes().value(QObject::tr(FILES_PATH_TAG)).toString();
                     fileInfo.title = xmlReader.attributes().value(QObject::tr(FILES_TITLE_TAG)).toString();
                     fileInfo.createTime = QDateTime::fromString(xmlReader.attributes().value(QObject::tr(FILES_CREATE_TIME_TAG)).toString(),DATE_TIME_FORMAT);
                     filesInfo.push_back(fileInfo);
@@ -212,10 +211,13 @@ std::vector<FileInfo> DocInfoXML::readFilesInfo(const QString &path)
                 {
                     fileInfo.fileType = FileInfo::dir;
                     fileInfo.name = xmlReader.attributes().value(QObject::tr(FILES_NAME_TAG)).toString();
+                    fileInfo.path = xmlReader.attributes().value(QObject::tr(FILES_PATH_TAG)).toString();
                     fileInfo.title = xmlReader.attributes().value(QObject::tr(FILES_TITLE_TAG)).toString();
                     fileInfo.createTime = QDateTime::fromString(xmlReader.attributes().value(QObject::tr(FILES_CREATE_TIME_TAG)).toString(),DATE_TIME_FORMAT);
                     filesInfo.push_back(fileInfo);
                 }
+
+
 
                 xmlReader.readNext();
             }

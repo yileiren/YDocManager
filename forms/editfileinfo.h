@@ -18,6 +18,8 @@ public:
     ~EditFileInfo();
 
     FileInfo *fileInfo; /*!< 文件信息 */
+
+    FileInfo *parentFileInfo; /*!< 父节点信息 */
 private slots:
     void on_radioButtonFile_clicked(bool checked);
 
