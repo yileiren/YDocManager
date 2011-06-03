@@ -91,6 +91,9 @@
    <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="contextMenuPolicy">
     <enum>Qt::NoContextMenu</enum>
    </property>
@@ -198,6 +201,9 @@
    </widget>
   </widget>
   <action name="newDocAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/menu/file/new.png</normaloff>:/images/menu/file/new.png</iconset>
@@ -210,6 +216,9 @@
    </property>
   </action>
   <action name="openDocAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/images/menu/file/open.png</normaloff>:/images/menu/file/open.png</iconset>

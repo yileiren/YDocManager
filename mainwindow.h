@@ -33,8 +33,14 @@ private slots:
 
     void on_treeWidget_itemCollapsed(QTreeWidgetItem* item);
 
+    void on_treeWidget_itemSelectionChanged();
+
+    void on_saveDocAction_triggered();
+
 private:
     Ui::MainWindow *ui;
+
+    FileInfo *openingFile;
 
     bool isShow; /*!< 是否已经显示 */
 
@@ -84,6 +90,7 @@ private:
      \brief 将文档节点信息写入XML，该方法只写当前节点下一级所有节点的信息
 
      \param item 节点
+     \return 成功返回true，否则返回false
     */
     bool writeDocInfoXML(const QTreeWidgetItem * item);
 
@@ -91,8 +98,24 @@ private:
      \brief 写入文档
 
      \param fileInfo 文档信息
+     \return 成功返回true，否则返回false
     */
     bool writeDocFile(const FileInfo *fileInfo);
+
+    /*!
+     \brief 打开文档
+
+     \param fileInfo 文档信息
+     \return 成功返回true，否则返回false
+    */
+    bool openDocFile(const FileInfo *fileInfo);
+
+    /*!
+     \brief 是否允许打开选中的文档
+
+     \return 成功返回true，否则返回false
+    */
+    bool docAlowOpen();
 
     void showEvent(QShowEvent * e);
 };

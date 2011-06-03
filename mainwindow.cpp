@@ -15,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     isShow(false),
-    rootItem(NULL)
+    rootItem(NULL),
+    openingFile(NULL)
 {
     ui->setupUi(this);
 
@@ -219,10 +220,6 @@ void MainWindow::on_newDocAction_triggered()
                 this->statusLabel.setText(tr("将节点写入XML..."));
                 if(this->writeDocInfoXML(this->ui->treeWidget->selectedItems().at(0)))
                 {
-                    this->ui->treeWidget->selectedItems().at(0)->setExpanded(true);
-                    this->ui->treeWidget->selectedItems().at(0)->setSelected(false);
-                    item->setSelected(true);
-
                     //创建新文档
                     if(FileInfo::doc == editFileInfo.fileInfo->fileType)
                     {
@@ -230,8 +227,22 @@ void MainWindow::on_newDocAction_triggered()
                         if(!this->writeDocFile(editFileInfo.fileInfo))
                         {
                             QMessageBox::information(this,tr("提示"),tr("创建文档失败！"),QMessageBox::Ok);
+                            this->ui->treeWidget->selectedItems().at(0)->removeChild(item);
+                            this->ui->yRichEditor->setReadOnly(true);
+                            delete editFileInfo.fileInfo;
+                            delete item;
+                            this->writeDocInfoXML(this->ui->treeWidget->selectedItems().at(0));
+                            this->statusLabel.setText(tr("完成"));
+                            return;
                         }
+                        this->openingFile = editFileInfo.fileInfo;
+                        this->ui->saveDocAction->setEnabled(true);
                     }
+
+
+                    this->ui->treeWidget->selectedItems().at(0)->setExpanded(true);
+                    this->ui->treeWidget->selectedItems().at(0)->setSelected(false);
+                    item->setSelected(true);
                 }
                 else
                 {
@@ -240,6 +251,10 @@ void MainWindow::on_newDocAction_triggered()
                     QMessageBox::information(this,tr("提示"),tr("新增失败！"),QMessageBox::Ok);
                 }
                 this->statusLabel.setText(tr("就绪"));
+            }
+            else
+            {
+                delete editFileInfo.fileInfo;
             }
         }
         else
@@ -316,7 +331,14 @@ void MainWindow::createRootItem()
 
 void MainWindow::on_openDocAction_triggered()
 {
-    //this->deleteSeccendChildItem();
+    if(this->ui->treeWidget->selectedItems().count() > 0)
+    {
+        FileInfo *info = this->ui->treeWidget->selectedItems()[0]->data(1,0).value<FileInfo *>();
+        if(this->docAlowOpen())
+        {
+            this->openDocFile(info);
+        }
+    }
 }
 
 void MainWindow::on_treeWidget_itemExpanded(QTreeWidgetItem* item)
@@ -360,11 +382,104 @@ bool MainWindow::writeDocFile(const FileInfo *fileInfo)
         //写入默认系统信息
         tsTEXT << this->ui->yRichEditor->toPlainText();
         newDocFile.close();
-        this->statusLabel.setText(tr("写入成功..."));
+        this->statusLabel.setText(tr("写入成功"));
         return true;
     }
     else
     {
+        this->statusLabel.setText(tr("写入失败"));
         return false;
+    }
+}
+
+bool MainWindow::docAlowOpen()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        int returnNum = QMessageBox::information(this,
+                                                 tr("提示"),tr("当前打开的文档处于编辑状态！"),
+                                                 QMessageBox::Save || QMessageBox::Discard || QMessageBox::Cancel,QMessageBox::Save);
+
+        if(QMessageBox::Save == returnNum)
+        {
+            if(this->writeDocFile(this->openingFile))
+            {
+                QMessageBox::information(this,tr("提示"),tr("保存成功。"),QMessageBox::Ok);
+            }
+            else
+            {
+                QMessageBox::information(this,tr("提示"),tr("保存失败！"),QMessageBox::Ok);
+                return false;
+            }
+        }
+        else if(QMessageBox::Discard == returnNum)
+        {
+            //放弃修改
+            this->ui->yRichEditor->setText(tr(""));
+            this->ui->yRichEditor->setReadOnly(true);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+bool MainWindow::openDocFile(const FileInfo *fileInfo)
+{
+    this->statusLabel.setText(tr("打开文档..."));
+
+    //读取HTML文件
+    QFile newDocFile(fileInfo->path + HTML_DOC_PATH + tr("/") + fileInfo->name + tr(".html"));
+    if(!newDocFile.open(QFile::WriteOnly|QFile::Truncate))
+    {
+        return false;
+    }
+    QTextStream tsHTML(&newDocFile);
+    this->ui->yRichEditor->setHtml(tsHTML.readAll());
+    newDocFile.close();
+
+    this->statusLabel.setText(tr("完成"));
+    return true;
+}
+
+void MainWindow::on_treeWidget_itemSelectionChanged()
+{
+    //获取当前选中的文件信息
+    if(this->ui->treeWidget->selectedItems().count() > 0)
+    {
+        FileInfo *fileInfo = this->ui->treeWidget->selectedItems()[0]->data(1,0).value<FileInfo *>();
+        if(FileInfo::dir == fileInfo->fileType)
+        {
+            this->ui->newDocAction->setEnabled(true);//选中的是目录时启用新建文档Action
+            this->ui->openDocAction->setEnabled(false);//禁用打开文档
+        }
+
+        if(FileInfo::doc == fileInfo->fileType)
+        {
+            if(this->openingFile != NULL && this->openingFile->name == fileInfo->name)
+            {
+                this->ui->openDocAction->setEnabled(false);//当选中的文档已经打开禁用打开
+            }
+            else
+            {
+                this->ui->openDocAction->setEnabled(true);
+            }
+
+            this->ui->newDocAction->setEnabled(false);//选中的是目录时启用新建文档Action
+        }
+    }
+}
+
+void MainWindow::on_saveDocAction_triggered()
+{
+    if(this->writeDocFile(this->openingFile))
+    {
+
+    }
+    else
+    {
+        QMessageBox::information(this,tr("提示"),tr("保存失败！"),QMessageBox::Ok);
     }
 }
