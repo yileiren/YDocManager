@@ -235,8 +235,11 @@ void MainWindow::on_newDocAction_triggered()
                             this->statusLabel.setText(tr("完成"));
                             return;
                         }
+                        this->ui->yRichEditor->setText(tr(""));
                         this->openingFile = editFileInfo.fileInfo;
                         this->ui->saveDocAction->setEnabled(true);
+                        this->ui->editDocAction->setEnabled(false);
+                        this->ui->closeDocAction->setEnabled(true);
                     }
 
 
@@ -336,7 +339,18 @@ void MainWindow::on_openDocAction_triggered()
         FileInfo *info = this->ui->treeWidget->selectedItems()[0]->data(1,0).value<FileInfo *>();
         if(this->docAlowOpen())
         {
-            this->openDocFile(info);
+            if(this->openDocFile(info))
+            {
+                this->ui->editDocAction->setEnabled(true);
+                this->ui->saveDocAction->setEnabled(false);
+                this->ui->yRichEditor->setReadOnly(true);
+                this->openingFile = info;
+
+            }
+            else
+            {
+                QMessageBox::information(this,tr("提示"),tr("打开文档失败！"));
+            }
         }
     }
 }
@@ -398,13 +412,14 @@ bool MainWindow::docAlowOpen()
     {
         int returnNum = QMessageBox::information(this,
                                                  tr("提示"),tr("当前打开的文档处于编辑状态！"),
-                                                 QMessageBox::Save || QMessageBox::Discard || QMessageBox::Cancel,QMessageBox::Save);
+                                                 QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,QMessageBox::Save);
 
         if(QMessageBox::Save == returnNum)
         {
             if(this->writeDocFile(this->openingFile))
             {
                 QMessageBox::information(this,tr("提示"),tr("保存成功。"),QMessageBox::Ok);
+                return true;
             }
             else
             {
@@ -424,6 +439,10 @@ bool MainWindow::docAlowOpen()
             return false;
         }
     }
+    else
+    {
+        return true;
+    }
 }
 
 bool MainWindow::openDocFile(const FileInfo *fileInfo)
@@ -432,7 +451,7 @@ bool MainWindow::openDocFile(const FileInfo *fileInfo)
 
     //读取HTML文件
     QFile newDocFile(fileInfo->path + HTML_DOC_PATH + tr("/") + fileInfo->name + tr(".html"));
-    if(!newDocFile.open(QFile::WriteOnly|QFile::Truncate))
+    if(!newDocFile.open(QFile::ReadOnly))
     {
         return false;
     }
@@ -476,10 +495,53 @@ void MainWindow::on_saveDocAction_triggered()
 {
     if(this->writeDocFile(this->openingFile))
     {
-
+        QMessageBox::information(this,tr("提示"),tr("保存成功！"),QMessageBox::Ok);
     }
     else
     {
         QMessageBox::information(this,tr("提示"),tr("保存失败！"),QMessageBox::Ok);
     }
+}
+
+void MainWindow::on_editDocAction_triggered()
+{
+    this->ui->yRichEditor->setReadOnly(false);
+    this->ui->saveDocAction->setEnabled(true);
+    this->ui->editDocAction->setEnabled(false);
+    this->ui->closeDocAction->setEnabled(true);
+}
+
+void MainWindow::on_closeDocAction_triggered()
+{
+    int returnNum = QMessageBox::information(this,
+                                             tr("提示"),tr("当前打开的文档处于编辑状态！"),
+                                             QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,QMessageBox::Save);
+
+    if(QMessageBox::Save == returnNum)
+    {
+        if(this->writeDocFile(this->openingFile))
+        {
+            QMessageBox::information(this,tr("提示"),tr("保存成功。"),QMessageBox::Ok);
+        }
+        else
+        {
+            QMessageBox::information(this,tr("提示"),tr("保存失败！"),QMessageBox::Ok);
+            return;
+        }
+    }
+    else if(QMessageBox::Discard == returnNum)
+    {
+        //放弃修改
+        this->ui->yRichEditor->setText(tr(""));
+        this->ui->yRichEditor->setReadOnly(true);
+    }
+    else
+    {
+        return;
+    }
+
+    this->ui->yRichEditor->setReadOnly(true);
+    this->ui->saveDocAction->setEnabled(false);
+    this->ui->editDocAction->setEnabled(true);
+    this->ui->closeDocAction->setEnabled(false);
 }

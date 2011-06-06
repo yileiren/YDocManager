@@ -3,7 +3,7 @@
 
 #include <QDesktopWidget>
 #include <QDialogButtonBox>
-#include <qpushbutton>
+#include <QPushButton>
 #include <QDateTime>
 #include <QUuid>
 

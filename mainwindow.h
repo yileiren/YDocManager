@@ -37,6 +37,10 @@ private slots:
 
     void on_saveDocAction_triggered();
 
+    void on_editDocAction_triggered();
+
+    void on_closeDocAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
