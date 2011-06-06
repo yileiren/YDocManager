@@ -41,6 +41,8 @@ private slots:
 
     void on_closeDocAction_triggered();
 
+    void on_setBoldAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 

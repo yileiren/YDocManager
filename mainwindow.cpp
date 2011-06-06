@@ -545,3 +545,8 @@ void MainWindow::on_closeDocAction_triggered()
     this->ui->editDocAction->setEnabled(true);
     this->ui->closeDocAction->setEnabled(false);
 }
+
+void MainWindow::on_setBoldAction_triggered()
+{
+    this->ui->yRichEditor->wordBold(true);
+}

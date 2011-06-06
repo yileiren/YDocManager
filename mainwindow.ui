@@ -73,7 +73,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -88,7 +88,16 @@
     <addaction name="separator"/>
     <addaction name="exitAction"/>
    </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>文档</string>
+    </property>
+    <addaction name="setBoldAction"/>
+    <addaction name="setItalicAction"/>
+    <addaction name="setUnderlineAction"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menu_2"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="enabled">
@@ -118,7 +127,7 @@
    <addaction name="saveDocAction"/>
    <addaction name="closeDocAction"/>
    <addaction name="separator"/>
-   <addaction name="exitAction"/>
+   <addaction name="setBoldAction"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="contextMenuPolicy">
@@ -291,6 +300,21 @@
    </property>
    <property name="toolTip">
     <string>编辑文档</string>
+   </property>
+  </action>
+  <action name="setBoldAction">
+   <property name="text">
+    <string>加粗</string>
+   </property>
+  </action>
+  <action name="setItalicAction">
+   <property name="text">
+    <string>倾斜</string>
+   </property>
+  </action>
+  <action name="setUnderlineAction">
+   <property name="text">
+    <string>下划线</string>
    </property>
   </action>
  </widget>
