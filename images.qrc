@@ -11,5 +11,14 @@
         <file alias="tree/dir.png">images/tree/dir.png</file>
         <file alias="tree/doc.png">images/tree/doc.png</file>
         <file alias="logo.gif">images/logo.gif</file>
+        <file alias="textEdit/editredo.png">images/textEdit/editredo.png</file>
+        <file alias="textEdit/editundo.png">images/textEdit/editundo.png</file>
+        <file alias="textEdit/fileprint.png">images/textEdit/fileprint.png</file>
+        <file alias="textEdit/textbold.png">images/textEdit/textbold.png</file>
+        <file alias="textEdit/textcenter.png">images/textEdit/textcenter.png</file>
+        <file alias="textEdit/textitalic.png">images/textEdit/textitalic.png</file>
+        <file alias="textEdit/textleft.png">images/textEdit/textleft.png</file>
+        <file alias="textEdit/textright.png">images/textEdit/textright.png</file>
+        <file alias="textEdit/textunder.png">images/textEdit/textunder.png</file>
     </qresource>
 </RCC>

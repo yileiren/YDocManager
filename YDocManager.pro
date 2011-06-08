@@ -67,7 +67,16 @@ OTHER_FILES += \
     images/tree/doc.png \
     images/tree/dir.png \
     images/logo.gif \
-    images/appWindow/initWindowBackImage.psd
+    images/appWindow/initWindowBackImage.psd \
+    images/textEdit/textunder.png \
+    images/textEdit/textright.png \
+    images/textEdit/textleft.png \
+    images/textEdit/textitalic.png \
+    images/textEdit/textcenter.png \
+    images/textEdit/textbold.png \
+    images/textEdit/fileprint.png \
+    images/textEdit/editundo.png \
+    images/textEdit/editredo.png
 
 RC_FILE += myapp.rc
 

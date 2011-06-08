@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include <QTreeWidgetItem>
 #include <QLabel>
+#include <QTextCharFormat>
 
 namespace Ui {
     class MainWindow;
@@ -43,12 +44,26 @@ private slots:
 
     void on_setBoldAction_triggered();
 
+    void on_undoAction_triggered();
+
+    void on_redoAction_triggered();
+
+    void on_setItalicAction_triggered();
+
+    void on_setUnderlineAction_triggered();
+
+    void on_yRichEditor_currentCharFormatChanged(QTextCharFormat format);
+
+    void on_yRichEditor_textChanged();
+
 private:
     Ui::MainWindow *ui;
 
-    FileInfo *openingFile;
+    FileInfo *openingFile; /*!< 正在编辑的文档 */
 
     bool isShow; /*!< 是否已经显示 */
+
+    bool isChanged; /*!< 打开的文档是否修改 */
 
     QTreeWidgetItem * rootItem; /*!< 文档树的根节点 */
 
@@ -122,6 +137,13 @@ private:
      \return 成功返回true，否则返回false
     */
     bool docAlowOpen();
+
+    /*!
+     \brief 根据字体格式改变菜单状态
+
+     \param f 字体
+    */
+    void changeMenuState(const QFont &f);
 
     void showEvent(QShowEvent * e);
 };

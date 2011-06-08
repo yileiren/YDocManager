@@ -16,7 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     isShow(false),
     rootItem(NULL),
-    openingFile(NULL)
+    openingFile(NULL),
+    isChanged(false)
 {
     ui->setupUi(this);
 
@@ -191,6 +192,12 @@ bool MainWindow::writeDocInfoXML(const QTreeWidgetItem *item)
 
 void MainWindow::on_newDocAction_triggered()
 {
+    //判断是否允许修改
+    if(!this->docAlowOpen())
+    {
+        return;
+    }
+
     //判断选中的节点
     if(this->ui->treeWidget->selectedItems().count() > 0)
     {
@@ -240,6 +247,7 @@ void MainWindow::on_newDocAction_triggered()
                         this->ui->saveDocAction->setEnabled(true);
                         this->ui->editDocAction->setEnabled(false);
                         this->ui->closeDocAction->setEnabled(true);
+                        this->isChanged = false;
                     }
 
 
@@ -408,7 +416,7 @@ bool MainWindow::writeDocFile(const FileInfo *fileInfo)
 
 bool MainWindow::docAlowOpen()
 {
-    if(!this->ui->yRichEditor->isReadOnly())
+    if(this->isChanged)
     {
         int returnNum = QMessageBox::information(this,
                                                  tr("提示"),tr("当前打开的文档处于编辑状态！"),
@@ -456,6 +464,7 @@ bool MainWindow::openDocFile(const FileInfo *fileInfo)
         return false;
     }
     QTextStream tsHTML(&newDocFile);
+    tsHTML.setCodec("utf-8");
     this->ui->yRichEditor->setHtml(tsHTML.readAll());
     newDocFile.close();
 
@@ -509,19 +518,27 @@ void MainWindow::on_editDocAction_triggered()
     this->ui->saveDocAction->setEnabled(true);
     this->ui->editDocAction->setEnabled(false);
     this->ui->closeDocAction->setEnabled(true);
+    this->isChanged = false;
+    this->changeMenuState(this->ui->yRichEditor->currentCharFormat().font());
 }
 
 void MainWindow::on_closeDocAction_triggered()
 {
-    int returnNum = QMessageBox::information(this,
+    int returnNum = QMessageBox::Discard;
+    if(this->isChanged)
+    {
+        returnNum = QMessageBox::information(this,
                                              tr("提示"),tr("当前打开的文档处于编辑状态！"),
                                              QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,QMessageBox::Save);
+    }
 
     if(QMessageBox::Save == returnNum)
     {
         if(this->writeDocFile(this->openingFile))
         {
             QMessageBox::information(this,tr("提示"),tr("保存成功。"),QMessageBox::Ok);
+            this->ui->yRichEditor->setReadOnly(true);
+            this->isChanged = false;
         }
         else
         {
@@ -532,15 +549,15 @@ void MainWindow::on_closeDocAction_triggered()
     else if(QMessageBox::Discard == returnNum)
     {
         //放弃修改
-        this->ui->yRichEditor->setText(tr(""));
         this->ui->yRichEditor->setReadOnly(true);
+        this->openDocFile(this->openingFile);
+        this->isChanged = false;
     }
     else
     {
         return;
     }
 
-    this->ui->yRichEditor->setReadOnly(true);
     this->ui->saveDocAction->setEnabled(false);
     this->ui->editDocAction->setEnabled(true);
     this->ui->closeDocAction->setEnabled(false);
@@ -548,5 +565,42 @@ void MainWindow::on_closeDocAction_triggered()
 
 void MainWindow::on_setBoldAction_triggered()
 {
-    this->ui->yRichEditor->wordBold(true);
+    this->ui->yRichEditor->wordBold(this->ui->setBoldAction->isChecked());
+}
+
+void MainWindow::on_undoAction_triggered()
+{
+    this->ui->yRichEditor->undo();
+}
+
+void MainWindow::on_redoAction_triggered()
+{
+    this->ui->yRichEditor->redo();
+}
+
+void MainWindow::on_setItalicAction_triggered()
+{
+    this->ui->yRichEditor->wordItalic(this->ui->setItalicAction->isChecked());
+}
+
+void MainWindow::on_setUnderlineAction_triggered()
+{
+    this->ui->yRichEditor->wordUnderline(this->ui->setUnderlineAction->isChecked());
+}
+
+void MainWindow::on_yRichEditor_currentCharFormatChanged(QTextCharFormat format)
+{
+    this->changeMenuState(format.font());
+}
+
+void MainWindow::changeMenuState(const QFont &f)
+{
+    this->ui->setBoldAction->setChecked(f.bold());
+    this->ui->setItalicAction->setChecked(f.italic());
+    this->ui->setUnderlineAction->setChecked(f.underline());
+}
+
+void MainWindow::on_yRichEditor_textChanged()
+{
+    this->isChanged = true;
 }
