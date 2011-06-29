@@ -21,6 +21,35 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //添加字体选择控件
+//    this->comboBox = new QFontComboBox(this->ui->toolBar);
+//    this->ui->toolBar->addWidget(this->comboBox);
+
+    this->fontComBox = new QComboBox(this->ui->toolBar);
+    this->ui->toolBar->addWidget(this->fontComBox);
+
+    this->fontComBox->insertItem(0,tr(""));
+    this->fontComBox->insertItem(1,tr("宋体"));
+    this->fontComBox->insertItem(2,tr("黑体"));
+    this->fontComBox->insertItem(3,tr("仿宋"));
+    this->fontComBox->insertItem(4,tr("楷体"));
+    this->fontComBox->insertItem(5,tr("隶书"));
+
+    connect(this->fontComBox,SIGNAL(activated(QString)),this,SLOT(changeTextFont(QString)));
+
+    //添加设置字号控件
+    comboSize = new QComboBox(this->ui->toolBar);
+    comboSize->setObjectName("comboSize");
+    this->ui->toolBar->addWidget(comboSize);
+    comboSize->setEditable(true);
+
+    QFontDatabase db;
+    foreach(int size, db.standardSizes())
+        comboSize->addItem(QString::number(size));
+
+    connect(comboSize, SIGNAL(activated(QString)),this, SLOT(changeSize(QString)));
+    comboSize->setCurrentIndex(comboSize->findText(QString::number(QApplication::font().pointSize())));
+
     //设置窗口居中显示
     QDesktopWidget * desktop = QApplication::desktop();
     this->move((desktop->width() - this->width()) / 2,(desktop->height() - this->height()) / 2);
@@ -598,9 +627,21 @@ void MainWindow::changeMenuState(const QFont &f)
     this->ui->setBoldAction->setChecked(f.bold());
     this->ui->setItalicAction->setChecked(f.italic());
     this->ui->setUnderlineAction->setChecked(f.underline());
+    this->fontComBox->setCurrentIndex(this->fontComBox->findText(QFontInfo(f).family()));
+    this->comboSize->setCurrentIndex(this->comboSize->findText(QString::number(f.pointSize())));
 }
 
 void MainWindow::on_yRichEditor_textChanged()
 {
     this->isChanged = true;
+}
+
+void MainWindow::changeTextFont(QString f)
+{
+    this->ui->yRichEditor->setFont(f);
+}
+
+void MainWindow::changeSize(QString s)
+{
+    this->ui->yRichEditor->wordSize(s.toInt());
 }

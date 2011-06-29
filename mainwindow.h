@@ -10,6 +10,8 @@
 #include <QTreeWidgetItem>
 #include <QLabel>
 #include <QTextCharFormat>
+#include <QFontComboBox>
+#include <QComboBox>
 
 namespace Ui {
     class MainWindow;
@@ -56,8 +58,28 @@ private slots:
 
     void on_yRichEditor_textChanged();
 
+    /**
+     * @brief 设置字体方法
+     *
+     * @param f 字体
+    */
+    void changeTextFont(QString f);
+
+    /**
+     * @brief 设置字号
+     *
+     * @param s 字号
+    */
+    void changeSize(QString s);
+
 private:
     Ui::MainWindow *ui;
+
+    QFontComboBox *comboBox; /*!< 字体选择控件 */
+
+    QComboBox *fontComBox; /*!< 字体选择控件 */
+
+    QComboBox *comboSize; /*!< 字号设置 */
 
     FileInfo *openingFile; /*!< 正在编辑的文档 */
 
