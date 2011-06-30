@@ -647,6 +647,37 @@ void MainWindow::changeMenuState(const QFont &f)
     this->ui->setUnderlineAction->setChecked(f.underline());
     this->fontComBox->setCurrentIndex(this->fontComBox->findText(QFontInfo(f).family()));
     this->comboSize->setCurrentIndex(this->comboSize->findText(QString::number(f.pointSize())));
+
+    this->changeTextAligenAction();
+}
+
+void MainWindow::changeTextAligenAction()
+{
+    //设置对齐方式按钮
+    if(this->ui->yRichEditor->getTextAlign() == YRichEditor::Left)
+    {
+        this->ui->setTextLeftAction->setChecked(true);
+        this->ui->setTextCenterAction->setChecked(false);
+        this->ui->setTextRightAction->setChecked(false);
+    }
+    else if(this->ui->yRichEditor->getTextAlign() == YRichEditor::Center)
+    {
+        this->ui->setTextLeftAction->setChecked(false);
+        this->ui->setTextCenterAction->setChecked(true);
+        this->ui->setTextRightAction->setChecked(false);
+    }
+    else if(this->ui->yRichEditor->getTextAlign() == YRichEditor::Right)
+    {
+        this->ui->setTextLeftAction->setChecked(false);
+        this->ui->setTextCenterAction->setChecked(false);
+        this->ui->setTextRightAction->setChecked(true);
+    }
+    else
+    {
+        this->ui->setTextLeftAction->setChecked(true);
+        this->ui->setTextCenterAction->setChecked(false);
+        this->ui->setTextRightAction->setChecked(false);
+    }
 }
 
 void MainWindow::on_yRichEditor_textChanged()
@@ -670,5 +701,46 @@ void MainWindow::changeSize(QString s)
     if(!this->ui->yRichEditor->isReadOnly())
     {
         this->ui->yRichEditor->wordSize(s.toInt());
+    }
+}
+
+void MainWindow::on_setTextLeftAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->textAlign(YRichEditor::Left);
+        this->changeTextAligenAction();
+    }
+}
+
+void MainWindow::on_setTextCenterAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        if(this->ui->setTextCenterAction->isChecked())
+        {
+            this->ui->yRichEditor->textAlign(YRichEditor::Center);
+        }
+        else
+        {
+            this->ui->yRichEditor->textAlign(YRichEditor::Left);
+        }
+        this->changeTextAligenAction();
+    }
+}
+
+void MainWindow::on_setTextRightAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        if(this->ui->setTextRightAction->isChecked())
+        {
+            this->ui->yRichEditor->textAlign(YRichEditor::Right);
+        }
+        else
+        {
+            this->ui->yRichEditor->textAlign(YRichEditor::Right);
+        }
+        this->changeTextAligenAction();
     }
 }

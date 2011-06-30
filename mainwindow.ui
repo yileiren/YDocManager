@@ -95,6 +95,10 @@
     <addaction name="setBoldAction"/>
     <addaction name="setItalicAction"/>
     <addaction name="setUnderlineAction"/>
+    <addaction name="separator"/>
+    <addaction name="setTextLeftAction"/>
+    <addaction name="setTextCenterAction"/>
+    <addaction name="setTextRightAction"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -141,6 +145,10 @@
    <addaction name="setBoldAction"/>
    <addaction name="setItalicAction"/>
    <addaction name="setUnderlineAction"/>
+   <addaction name="separator"/>
+   <addaction name="setTextLeftAction"/>
+   <addaction name="setTextCenterAction"/>
+   <addaction name="setTextRightAction"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="contextMenuPolicy">
@@ -390,6 +398,42 @@
    </property>
    <property name="text">
     <string>重做</string>
+   </property>
+  </action>
+  <action name="setTextLeftAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/textleft.png</normaloff>:/images/textEdit/textleft.png</iconset>
+   </property>
+   <property name="text">
+    <string>左对齐</string>
+   </property>
+  </action>
+  <action name="setTextCenterAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/textcenter.png</normaloff>:/images/textEdit/textcenter.png</iconset>
+   </property>
+   <property name="text">
+    <string>剧中对齐</string>
+   </property>
+  </action>
+  <action name="setTextRightAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/textright.png</normaloff>:/images/textEdit/textright.png</iconset>
+   </property>
+   <property name="text">
+    <string>右对齐</string>
    </property>
   </action>
  </widget>

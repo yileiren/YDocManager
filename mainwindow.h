@@ -72,6 +72,12 @@ private slots:
     */
     void changeSize(QString s);
 
+    void on_setTextLeftAction_triggered();
+
+    void on_setTextCenterAction_triggered();
+
+    void on_setTextRightAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -166,6 +172,12 @@ private:
      \param f 字体
     */
     void changeMenuState(const QFont &f);
+
+    /*!
+     \brief 设置文本对齐方式按钮
+
+    */
+    void changeTextAligenAction();
 
     void showEvent(QShowEvent * e);
 };
