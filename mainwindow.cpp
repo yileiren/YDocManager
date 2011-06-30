@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //添加字体选择控件
 //    this->comboBox = new QFontComboBox(this->ui->toolBar);
 //    this->ui->toolBar->addWidget(this->comboBox);
+//    connect(this->comboBox,SIGNAL(activated(QString)),this,SLOT(changeTextFont(QString)));
 
     this->fontComBox = new QComboBox(this->ui->toolBar);
     this->ui->toolBar->addWidget(this->fontComBox);
@@ -380,9 +381,10 @@ void MainWindow::on_openDocAction_triggered()
             {
                 this->ui->editDocAction->setEnabled(true);
                 this->ui->saveDocAction->setEnabled(false);
+                this->ui->closeDocAction->setEnabled(false);
                 this->ui->yRichEditor->setReadOnly(true);
                 this->openingFile = info;
-
+                this->isChanged = false;
             }
             else
             {
@@ -533,6 +535,7 @@ void MainWindow::on_saveDocAction_triggered()
 {
     if(this->writeDocFile(this->openingFile))
     {
+        this->isChanged = false;
         QMessageBox::information(this,tr("提示"),tr("保存成功！"),QMessageBox::Ok);
     }
     else
@@ -594,27 +597,42 @@ void MainWindow::on_closeDocAction_triggered()
 
 void MainWindow::on_setBoldAction_triggered()
 {
-    this->ui->yRichEditor->wordBold(this->ui->setBoldAction->isChecked());
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->wordBold(this->ui->setBoldAction->isChecked());
+    }
 }
 
 void MainWindow::on_undoAction_triggered()
 {
-    this->ui->yRichEditor->undo();
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->undo();
+    }
 }
 
 void MainWindow::on_redoAction_triggered()
 {
-    this->ui->yRichEditor->redo();
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->redo();
+    }
 }
 
 void MainWindow::on_setItalicAction_triggered()
 {
-    this->ui->yRichEditor->wordItalic(this->ui->setItalicAction->isChecked());
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->wordItalic(this->ui->setItalicAction->isChecked());
+    }
 }
 
 void MainWindow::on_setUnderlineAction_triggered()
 {
-    this->ui->yRichEditor->wordUnderline(this->ui->setUnderlineAction->isChecked());
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->wordUnderline(this->ui->setUnderlineAction->isChecked());
+    }
 }
 
 void MainWindow::on_yRichEditor_currentCharFormatChanged(QTextCharFormat format)
@@ -633,15 +651,24 @@ void MainWindow::changeMenuState(const QFont &f)
 
 void MainWindow::on_yRichEditor_textChanged()
 {
-    this->isChanged = true;
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->isChanged = true;
+    }
 }
 
 void MainWindow::changeTextFont(QString f)
 {
-    this->ui->yRichEditor->setFont(f);
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->wordFamily(f);
+    }
 }
 
 void MainWindow::changeSize(QString s)
 {
-    this->ui->yRichEditor->wordSize(s.toInt());
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->wordSize(s.toInt());
+    }
 }
