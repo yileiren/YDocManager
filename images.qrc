@@ -20,5 +20,7 @@
         <file alias="textEdit/textleft.png">images/textEdit/textleft.png</file>
         <file alias="textEdit/textright.png">images/textEdit/textright.png</file>
         <file alias="textEdit/textunder.png">images/textEdit/textunder.png</file>
+        <file alias="textEdit/backgroundColor.png">images/textEdit/backgroundColor.png</file>
+        <file alias="textEdit/FontsColor.png">images/textEdit/FontsColor.png</file>
     </qresource>
 </RCC>

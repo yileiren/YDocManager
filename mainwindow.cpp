@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QDir>
 #include <QTextStream>
+#include <QColorDialog>
 #include <exception>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(this->comboBox,SIGNAL(activated(QString)),this,SLOT(changeTextFont(QString)));
 
     this->fontComBox = new QComboBox(this->ui->toolBar);
+    this->fontComBox->setMinimumWidth(100);
     this->ui->toolBar->addWidget(this->fontComBox);
 
     this->fontComBox->insertItem(0,tr(""));
@@ -40,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //添加设置字号控件
     comboSize = new QComboBox(this->ui->toolBar);
+    this->comboSize->setMinimumWidth(50);
     comboSize->setObjectName("comboSize");
     this->ui->toolBar->addWidget(comboSize);
     comboSize->setEditable(true);
@@ -51,6 +54,23 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(comboSize, SIGNAL(activated(QString)),this, SLOT(changeSize(QString)));
     comboSize->setCurrentIndex(comboSize->findText(QString::number(QApplication::font().pointSize())));
 
+    //文本样式控件
+    this->comboBoxTextStyle = new QComboBox(this->ui->toolBar);
+    this->comboBoxTextStyle->setMinimumWidth(100);
+
+    this->comboBoxTextStyle->addItem(tr(""));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("项目符号1"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("项目符号2"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("项目符号3"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号1"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号2"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号3"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号4"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号5"));
+
+    this->ui->toolBar->addWidget(this->comboBoxTextStyle);
+    connect(this->comboBoxTextStyle,SIGNAL(activated(int)),this,SLOT(changeTextStyle(int)));
+
     //设置窗口居中显示
     QDesktopWidget * desktop = QApplication::desktop();
     this->move((desktop->width() - this->width()) / 2,(desktop->height() - this->height()) / 2);
@@ -59,6 +79,9 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete this->fontComBox;
+    delete this->comboSize;
+    delete this->comboBoxTextStyle;
 }
 
 void MainWindow::readChildItem(QTreeWidgetItem *parent)
@@ -649,6 +672,45 @@ void MainWindow::changeMenuState(const QFont &f)
     this->comboSize->setCurrentIndex(this->comboSize->findText(QString::number(f.pointSize())));
 
     this->changeTextAligenAction();
+
+    //改变文本列表
+
+    if(QTextListFormat::ListStyleUndefined == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(0);
+    }
+    else if(QTextListFormat::ListDisc == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(1);
+    }
+    else if(QTextListFormat::ListCircle == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(2);
+    }
+    else if(QTextListFormat::ListSquare == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(3);
+    }
+    else if(QTextListFormat::ListDecimal == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(4);
+    }
+    else if(QTextListFormat::ListLowerAlpha == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(5);
+    }
+    else if(QTextListFormat::ListUpperAlpha == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(6);
+    }
+    else if(QTextListFormat::ListLowerRoman == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(7);
+    }
+    else if(QTextListFormat::ListUpperRoman == this->ui->yRichEditor->getTextStyle())
+    {
+        this->comboBoxTextStyle->setCurrentIndex(8);
+    }
 }
 
 void MainWindow::changeTextAligenAction()
@@ -742,5 +804,72 @@ void MainWindow::on_setTextRightAction_triggered()
             this->ui->yRichEditor->textAlign(YRichEditor::Right);
         }
         this->changeTextAligenAction();
+    }
+}
+
+void MainWindow::on_fontColorAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        QColorDialog colorDlg(this->ui->yRichEditor->getWordColor(),this);
+        if(QDialog::Accepted ==  colorDlg.exec())
+        {
+            this->ui->yRichEditor->wordColor(colorDlg.selectedColor());
+        }
+    }
+}
+
+void MainWindow::on_backgroundColorAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        QColorDialog colorDlg(this->ui->yRichEditor->getWordBackgroundColor(),this);
+        if(QDialog::Accepted ==  colorDlg.exec())
+        {
+            this->ui->yRichEditor->wordBackgroundColor(colorDlg.selectedColor());
+        }
+    }
+}
+
+void MainWindow::changeTextStyle(int index)
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        if(index == 0)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListStyleUndefined);
+        }
+        else if(index == 1)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListDisc);
+        }
+        else if(index == 2)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListCircle);
+        }
+        else if(index == 3)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListSquare);
+        }
+        else if(index == 4)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListDecimal);
+        }
+        else if(index == 5)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListLowerAlpha);
+        }
+        else if(index == 6)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListUpperAlpha);
+        }
+        else if(index == 7)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListLowerRoman);
+        }
+        else if(index == 8)
+        {
+            this->ui->yRichEditor->textStyle(QTextListFormat::ListUpperRoman);
+        }
     }
 }
