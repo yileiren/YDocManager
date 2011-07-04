@@ -78,7 +78,15 @@ OTHER_FILES += \
     images/textEdit/editundo.png \
     images/textEdit/editredo.png \
     images/textEdit/FontsColor.png \
-    images/textEdit/backgroundColor.png
+    images/textEdit/backgroundColor.png \
+    images/textEdit/lists/8.png \
+    images/textEdit/lists/7.png \
+    images/textEdit/lists/6.png \
+    images/textEdit/lists/5.png \
+    images/textEdit/lists/4.png \
+    images/textEdit/lists/3.png \
+    images/textEdit/lists/2.png \
+    images/textEdit/lists/1.png
 
 RC_FILE += myapp.rc
 

@@ -59,14 +59,14 @@ MainWindow::MainWindow(QWidget *parent) :
     this->comboBoxTextStyle->setMinimumWidth(100);
 
     this->comboBoxTextStyle->addItem(tr(""));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("项目符号1"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("项目符号2"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("项目符号3"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号1"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号2"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号3"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号4"));
-    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/FontsColor.png")),tr("编号5"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/1.png")),tr("项目符号1"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/2.png")),tr("项目符号2"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/3.png")),tr("项目符号3"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/4.png")),tr("编号1"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/5.png")),tr("编号2"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/6.png")),tr("编号3"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/7.png")),tr("编号4"));
+    this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/8.png")),tr("编号5"));
 
     this->ui->toolBar->addWidget(this->comboBoxTextStyle);
     connect(this->comboBoxTextStyle,SIGNAL(activated(int)),this,SLOT(changeTextStyle(int)));
@@ -673,44 +673,44 @@ void MainWindow::changeMenuState(const QFont &f)
 
     this->changeTextAligenAction();
 
-    //改变文本列表
+//    //改变文本列表
 
-    if(QTextListFormat::ListStyleUndefined == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(0);
-    }
-    else if(QTextListFormat::ListDisc == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(1);
-    }
-    else if(QTextListFormat::ListCircle == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(2);
-    }
-    else if(QTextListFormat::ListSquare == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(3);
-    }
-    else if(QTextListFormat::ListDecimal == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(4);
-    }
-    else if(QTextListFormat::ListLowerAlpha == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(5);
-    }
-    else if(QTextListFormat::ListUpperAlpha == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(6);
-    }
-    else if(QTextListFormat::ListLowerRoman == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(7);
-    }
-    else if(QTextListFormat::ListUpperRoman == this->ui->yRichEditor->getTextStyle())
-    {
-        this->comboBoxTextStyle->setCurrentIndex(8);
-    }
+//    if(QTextListFormat::ListStyleUndefined == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(0);
+//    }
+//    else if(QTextListFormat::ListDisc == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(1);
+//    }
+//    else if(QTextListFormat::ListCircle == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(2);
+//    }
+//    else if(QTextListFormat::ListSquare == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(3);
+//    }
+//    else if(QTextListFormat::ListDecimal == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(4);
+//    }
+//    else if(QTextListFormat::ListLowerAlpha == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(5);
+//    }
+//    else if(QTextListFormat::ListUpperAlpha == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(6);
+//    }
+//    else if(QTextListFormat::ListLowerRoman == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(7);
+//    }
+//    else if(QTextListFormat::ListUpperRoman == this->ui->yRichEditor->getTextStyle())
+//    {
+//        this->comboBoxTextStyle->setCurrentIndex(8);
+//    }
 }
 
 void MainWindow::changeTextAligenAction()
