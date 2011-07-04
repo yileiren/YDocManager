@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->fontComBox = new QComboBox(this->ui->toolBar);
     this->fontComBox->setMinimumWidth(100);
+    this->fontComBox->setMinimumHeight(32);
     this->ui->toolBar->addWidget(this->fontComBox);
 
     this->fontComBox->insertItem(0,tr(""));
@@ -43,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //添加设置字号控件
     comboSize = new QComboBox(this->ui->toolBar);
     this->comboSize->setMinimumWidth(50);
+    this->comboSize->setMinimumHeight(32);
     comboSize->setObjectName("comboSize");
     this->ui->toolBar->addWidget(comboSize);
     comboSize->setEditable(true);
@@ -57,6 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //文本样式控件
     this->comboBoxTextStyle = new QComboBox(this->ui->toolBar);
     this->comboBoxTextStyle->setMinimumWidth(100);
+    this->comboBoxTextStyle->setMinimumHeight(32);
+    this->comboBoxTextStyle->setIconSize(QSize(24,24));
 
     this->comboBoxTextStyle->addItem(tr(""));
     this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/1.png")),tr("项目符号1"));
