@@ -76,7 +76,9 @@ OTHER_FILES += \
     images/textEdit/textbold.png \
     images/textEdit/fileprint.png \
     images/textEdit/editundo.png \
-    images/textEdit/editredo.png
+    images/textEdit/editredo.png \
+    images/textEdit/FontsColor.png \
+    images/textEdit/backgroundColor.png
 
 RC_FILE += myapp.rc
 

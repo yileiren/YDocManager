@@ -72,6 +72,18 @@ private slots:
     */
     void changeSize(QString s);
 
+    void changeTextStyle(int index);
+
+    void on_setTextLeftAction_triggered();
+
+    void on_setTextCenterAction_triggered();
+
+    void on_setTextRightAction_triggered();
+
+    void on_fontColorAction_triggered();
+
+    void on_backgroundColorAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -80,6 +92,8 @@ private:
     QComboBox *fontComBox; /*!< 字体选择控件 */
 
     QComboBox *comboSize; /*!< 字号设置 */
+
+    QComboBox *comboBoxTextStyle; /*!< 文本样式控件 */
 
     FileInfo *openingFile; /*!< 正在编辑的文档 */
 
@@ -166,6 +180,12 @@ private:
      \param f 字体
     */
     void changeMenuState(const QFont &f);
+
+    /*!
+     \brief 设置文本对齐方式按钮
+
+    */
+    void changeTextAligenAction();
 
     void showEvent(QShowEvent * e);
 };
