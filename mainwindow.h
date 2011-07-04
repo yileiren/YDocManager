@@ -28,6 +28,7 @@ public:
     SystemInfo *systemInfo; /*!< 系统信息 */
     DocInfo * docInfo; /*!< 文档信息 */
 private slots:
+    void on_insertTableAction_triggered();
     void on_newDocAction_triggered();
 
     void on_openDocAction_triggered();

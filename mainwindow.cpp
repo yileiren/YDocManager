@@ -873,3 +873,8 @@ void MainWindow::changeTextStyle(int index)
         }
     }
 }
+
+void MainWindow::on_insertTableAction_triggered()
+{
+
+}

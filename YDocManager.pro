@@ -86,7 +86,8 @@ OTHER_FILES += \
     images/textEdit/lists/4.png \
     images/textEdit/lists/3.png \
     images/textEdit/lists/2.png \
-    images/textEdit/lists/1.png
+    images/textEdit/lists/1.png \
+    images/textEdit/table/table.png
 
 RC_FILE += myapp.rc
 

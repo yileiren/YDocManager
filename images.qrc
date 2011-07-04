@@ -30,5 +30,6 @@
         <file alias="textEdit/lists/6.png">images/textEdit/lists/6.png</file>
         <file alias="textEdit/lists/7.png">images/textEdit/lists/7.png</file>
         <file alias="textEdit/lists/8.png">images/textEdit/lists/8.png</file>
+        <file alias="textEdit/table/table.png">images/textEdit/table/table.png</file>
     </qresource>
 </RCC>
