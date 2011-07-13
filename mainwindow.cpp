@@ -3,6 +3,7 @@
 
 #include "appXML/docinfoxml.h"
 #include "forms/editfileinfo.h"
+#include "forms/choseimage.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -60,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->comboBoxTextStyle = new QComboBox(this->ui->toolBar);
     this->comboBoxTextStyle->setMinimumWidth(100);
     this->comboBoxTextStyle->setMinimumHeight(32);
-    this->comboBoxTextStyle->setIconSize(QSize(24,24));
+    this->comboBoxTextStyle->setIconSize(QSize(28,28));
 
     this->comboBoxTextStyle->addItem(tr(""));
     this->comboBoxTextStyle->addItem(QIcon(tr(":/images/textEdit/lists/1.png")),tr("项目符号1"));
@@ -881,4 +882,10 @@ void MainWindow::changeTextStyle(int index)
 void MainWindow::on_insertTableAction_triggered()
 {
 
+}
+
+void MainWindow::on_insertImageAction_triggered()
+{
+    ChoseImage choseImage;
+    choseImage.exec();
 }

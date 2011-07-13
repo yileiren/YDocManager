@@ -15,7 +15,8 @@ SOURCES += main.cpp\
     forms/appopen.cpp \
     forms/docinfoedit.cpp \
     appXML/docinfoxml.cpp \
-    forms/editfileinfo.cpp
+    forms/editfileinfo.cpp \
+    forms/choseimage.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
@@ -23,12 +24,14 @@ HEADERS  += mainwindow.h \
     ydocsyetem.h \
     forms/docinfoedit.h \
     appXML/docinfoxml.h \
-    forms/editfileinfo.h
+    forms/editfileinfo.h \
+    forms/choseimage.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \
     forms/docinfoedit.ui \
-    forms/editfileinfo.ui
+    forms/editfileinfo.ui \
+    forms/choseimage.ui
 
 win32{
     debug{
@@ -87,7 +90,8 @@ OTHER_FILES += \
     images/textEdit/lists/3.png \
     images/textEdit/lists/2.png \
     images/textEdit/lists/1.png \
-    images/textEdit/table/table.png
+    images/textEdit/table/table.png \
+    images/textEdit/insertImage.png
 
 RC_FILE += myapp.rc
 

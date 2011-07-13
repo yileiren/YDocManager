@@ -85,6 +85,8 @@ private slots:
 
     void on_backgroundColorAction_triggered();
 
+    void on_insertImageAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
