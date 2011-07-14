@@ -886,6 +886,10 @@ void MainWindow::on_insertTableAction_triggered()
 
 void MainWindow::on_insertImageAction_triggered()
 {
-    ChoseImage choseImage;
-    choseImage.exec();
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        ChoseImage choseImage;
+        choseImage.openingFile = this->openingFile;
+        choseImage.exec();
+    }
 }

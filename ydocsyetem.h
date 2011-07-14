@@ -137,4 +137,22 @@ Q_DECLARE_METATYPE(FileInfo *);
 //创建时间节点
 #define FILES_CREATE_TIME_TAG "createTime"
 
+//存储图片的文件夹名称
+#define IMAGES_FILE_DIR "images"
+
+//存储图片文件信息的文件扩展名，此系统使用文档名加扩展名来记录图片信息
+#define IMAGES_INFO_FILE_EXPANDED_NAME ".dat"
+
+//图像信息文件根节点标签
+#define IMAGE_FILES_INFO_ROOT_TAG "images"
+
+//图像信息文件节点标签
+#define IMAGE_FILE_INFO_TAG "image"
+
+//图像信息文件名标签
+#define IMAGE_FILE_NAME_TAG "name"
+
+//可以使用的图片类型
+#define IMAGE_FILES_TYPE "所有图片 (*.jpg *.jpeg *.png *.bmp *.gif);;JPEG图片 (*.jpg,*.jpeg);;png图片 (*.png);;位图 (*.bmp);;GIF图片 (*.gif)"
+
 #endif // YDOCSYETEM_H

@@ -2,7 +2,10 @@
 #define CHOSEIMAGE_H
 
 #include <QDialog>
-#include <QPixmap>
+#include <QListWidgetItem>
+
+#include "ydocsyetem.h"
+
 
 namespace Ui {
     class ChoseImage;
@@ -16,15 +19,21 @@ public:
     explicit ChoseImage(QWidget *parent = 0);
     ~ChoseImage();
 
+    FileInfo *openingFile; /*!< 正在编辑的文档 */
+
 private slots:
     void on_buttonBox_accepted();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::ChoseImage *ui;
 
     bool isShown; /*!< 窗口是否已经显示 */
 
-    QPixmap *pixmap;  /*!< 显示的图像 */
+    //QListWidgetItem *
 
     /*!
      \brief 窗口显示事件
@@ -32,6 +41,18 @@ private:
      \param e 事件
     */
     void showEvent(QShowEvent *e);
+
+    /*!
+     \brief 读取图片信息
+
+    */
+    void readImages();
+
+    /*!
+     \brief 写图片信息
+
+    */
+    void writeImages();
 };
 
 #endif // CHOSEIMAGE_H
