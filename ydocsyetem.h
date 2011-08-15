@@ -153,6 +153,6 @@ Q_DECLARE_METATYPE(FileInfo *);
 #define IMAGE_FILE_NAME_TAG "name"
 
 //可以使用的图片类型
-#define IMAGE_FILES_TYPE "所有图片 (*.jpg *.jpeg *.png *.bmp *.gif);;JPEG图片 (*.jpg,*.jpeg);;png图片 (*.png);;位图 (*.bmp);;GIF图片 (*.gif)"
+#define IMAGE_FILES_TYPE "所有图片 (*.jpg *.jpeg *.png *.bmp *.gif);;JPEG图片 (*.jpg *.jpeg);;png图片 (*.png);;位图 (*.bmp);;GIF图片 (*.gif)"
 
 #endif // YDOCSYETEM_H

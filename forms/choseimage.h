@@ -21,12 +21,18 @@ public:
 
     FileInfo *openingFile; /*!< 正在编辑的文档 */
 
+    QString selectedText; /*!< 选中的图片名称 */
+
 private slots:
     void on_buttonBox_accepted();
 
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_listWidget_itemSelectionChanged();
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::ChoseImage *ui;
