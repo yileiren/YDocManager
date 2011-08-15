@@ -11,6 +11,8 @@
 #include <QDir>
 #include <QTextStream>
 #include <QColorDialog>
+#include <QXmlStreamReader>
+#include <QFileInfo>
 #include <exception>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -365,6 +367,14 @@ void MainWindow::showEvent(QShowEvent *e)
         this->ui->statusBar->addWidget(&this->userNameLabel);
 
         this->createRootItem();
+
+        //创建图像临时文件夹
+        QString imagesDirName = tr(IMAGES_FILE_DIR);
+        QDir imagesDir;
+        if(!imagesDir.exists(imagesDirName))
+        {
+            imagesDir.mkdir(imagesDirName);
+        }
     }
 }
 
@@ -514,6 +524,62 @@ bool MainWindow::docAlowOpen()
 
 bool MainWindow::openDocFile(const FileInfo *fileInfo)
 {
+    this->statusLabel.setText(tr("清楚图像缓冲区..."));
+    QDir imagesDir(tr(IMAGES_FILE_DIR));
+    QFileInfoList fileInfos = imagesDir.entryInfoList(QDir::Files);
+    for(int i = 0;i < fileInfos.count();i++)
+    {
+        QFile file(tr(IMAGES_FILE_DIR) + tr("/") + fileInfos.at(i).fileName());
+        file.remove();
+    }
+
+    this->statusLabel.setText(tr("复制图像..."));
+    QString infoPath = fileInfo->path +
+                        tr("/") + HTML_DOC_PATH +
+                        tr("/") + IMAGES_FILE_DIR +
+                        tr("/") + fileInfo->name + IMAGES_INFO_FILE_EXPANDED_NAME;
+    //检查文档信息
+    QFile docInfoFile;
+    docInfoFile.setFileName(infoPath);
+    if(docInfoFile.exists())
+    {
+        //打开图像信息文档文件
+        if(docInfoFile.open(QFile::ReadOnly))
+        {
+            //读取文档信息
+            QXmlStreamReader xmlReader;
+            xmlReader.setDevice(&docInfoFile);
+            while(!xmlReader.atEnd())
+            {
+                if(xmlReader.isStartElement())
+                {
+                    QString name = xmlReader.name().toString();
+                    if(name == IMAGE_FILE_INFO_TAG)
+                    {
+                        QString imageFileName = fileInfo->path +
+                                                    tr("/") + HTML_DOC_PATH +
+                                                    tr("/") + IMAGES_FILE_DIR +
+                                                    tr("/") + xmlReader.attributes().value(QObject::tr(IMAGE_FILE_NAME_TAG)).toString();
+                        QFile imageFile(imageFileName);
+                        imageFile.copy(tr(IMAGES_FILE_DIR) + tr("/") + xmlReader.attributes().value(QObject::tr(IMAGE_FILE_NAME_TAG)).toString());
+
+                    }
+
+                    xmlReader.readNext();
+                }
+                else
+                {
+                    xmlReader.readNext();
+                }
+            }
+            docInfoFile.close();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     this->statusLabel.setText(tr("打开文档..."));
 
     //读取HTML文件

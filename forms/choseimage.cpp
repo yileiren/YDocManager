@@ -128,8 +128,6 @@ void ChoseImage::readImages()
         xmlReader.setDevice(&docInfoFile);
         while(!xmlReader.atEnd())
         {
-            FileInfo fileInfo;
-
             if(xmlReader.isStartElement())
             {
                 QString name = xmlReader.name().toString();
