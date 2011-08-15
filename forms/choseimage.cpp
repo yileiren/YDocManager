@@ -181,6 +181,7 @@ void ChoseImage::on_pushButton_2_clicked()
                 tr("/") + IMAGES_FILE_DIR +
                 tr("/") + fileName;
         file.copy(newFileName);
+        file.copy(tr(IMAGES_FILE_DIR) + tr("/") + fileName);
 
         //添加图像到列表
         this->ui->listWidget->addItem(fileName);

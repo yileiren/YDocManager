@@ -956,6 +956,9 @@ void MainWindow::on_insertImageAction_triggered()
     {
         ChoseImage choseImage;
         choseImage.openingFile = this->openingFile;
-        choseImage.exec();
+        if(QDialog::Accepted == choseImage.exec())
+        {
+            this->ui->yRichEditor->insertImage(tr(IMAGES_FILE_DIR) + tr("/") + choseImage.selectedText);
+        }
     }
 }
