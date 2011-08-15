@@ -16,7 +16,8 @@ SOURCES += main.cpp\
     forms/docinfoedit.cpp \
     appXML/docinfoxml.cpp \
     forms/editfileinfo.cpp \
-    forms/choseimage.cpp
+    forms/choseimage.cpp \
+    forms/inserttable.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
@@ -25,13 +26,15 @@ HEADERS  += mainwindow.h \
     forms/docinfoedit.h \
     appXML/docinfoxml.h \
     forms/editfileinfo.h \
-    forms/choseimage.h
+    forms/choseimage.h \
+    forms/inserttable.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \
     forms/docinfoedit.ui \
     forms/editfileinfo.ui \
-    forms/choseimage.ui
+    forms/choseimage.ui \
+    forms/inserttable.ui
 
 win32{
     debug{
