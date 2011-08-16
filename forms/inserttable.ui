@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>200</width>
-    <height>230</height>
+    <height>270</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>230</height>
+    <height>270</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>200</width>
-    <height>230</height>
+    <height>270</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -28,8 +28,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>73</x>
-     <y>195</y>
+     <x>70</x>
+     <y>241</y>
      <width>111</width>
      <height>23</height>
     </rect>
@@ -46,8 +46,8 @@
     <rect>
      <x>7</x>
      <y>10</y>
-     <width>177</width>
-     <height>181</height>
+     <width>186</width>
+     <height>131</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="5,0">
@@ -119,7 +119,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <property name="minimum">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="maximum">
        <number>1000</number>
@@ -145,7 +145,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <property name="minimum">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="maximum">
        <number>1000</number>
@@ -187,41 +187,119 @@
       </item>
      </widget>
     </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_6">
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>148</y>
+     <width>185</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>表格背景色</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>162</y>
+     <width>173</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,4,1,4" columnminimumwidth="1,4,1,4">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>表格背景色：</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <string>R：</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QFrame" name="frame">
+    <item row="0" column="1">
+     <widget class="QSpinBox" name="R">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="value">
+       <number>255</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QSpinBox" name="B">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="value">
+       <number>255</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>B：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>G：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QSpinBox" name="G">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="value">
+       <number>255</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="pushButton">
       <property name="maximumSize">
        <size>
-        <width>30</width>
-        <height>30</height>
+        <width>59</width>
+        <height>16777215</height>
        </size>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="midLineWidth">
-       <number>1</number>
+      <property name="text">
+       <string>选择</string>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>rowCount</tabstop>
+  <tabstop>columnusCount</tabstop>
+  <tabstop>cellsPadding</tabstop>
+  <tabstop>cellsSpacing</tabstop>
+  <tabstop>tableAlign</tabstop>
+  <tabstop>R</tabstop>
+  <tabstop>G</tabstop>
+  <tabstop>B</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

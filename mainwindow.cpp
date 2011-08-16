@@ -4,6 +4,7 @@
 #include "appXML/docinfoxml.h"
 #include "forms/editfileinfo.h"
 #include "forms/choseimage.h"
+#include "forms/inserttable.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -948,7 +949,19 @@ void MainWindow::changeTextStyle(int index)
 
 void MainWindow::on_insertTableAction_triggered()
 {
-
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InsertTable dlg;
+        if(QDialog::Accepted == dlg.exec())
+        {
+            this->ui->yRichEditor->insertTable(dlg.getRowCount(),
+                                               dlg.getColoumCount(),
+                                               dlg.getCellsSpacing(),
+                                               dlg.getCellsSpacing(),
+                                               dlg.getTableAlign(),
+                                               dlg.getBackgroundColor());
+        }
+    }
 }
 
 void MainWindow::on_insertImageAction_triggered()

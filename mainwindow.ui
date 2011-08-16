@@ -130,6 +130,7 @@
     <addaction name="insertColumnsAtEndAction"/>
     <addaction name="removeRowsAction"/>
     <addaction name="removeColumnsAction"/>
+    <addaction name="setColumnsWidthAction"/>
     <addaction name="separator"/>
     <addaction name="mergeCellsAction"/>
     <addaction name="splitCellAction"/>
@@ -315,6 +316,7 @@
    <addaction name="insertColumnsAtEndAction"/>
    <addaction name="removeRowsAction"/>
    <addaction name="removeColumnsAction"/>
+   <addaction name="setColumnsWidthAction"/>
    <addaction name="separator"/>
    <addaction name="mergeCellsAction"/>
    <addaction name="splitCellAction"/>
@@ -683,6 +685,18 @@
    </property>
    <property name="toolTip">
     <string>设置选中单元格的背景色</string>
+   </property>
+  </action>
+  <action name="setColumnsWidthAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/setColumnsWidth.jpg</normaloff>:/images/textEdit/table/setColumnsWidth.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>设置列宽</string>
+   </property>
+   <property name="toolTip">
+    <string>设置选中列的列宽</string>
    </property>
   </action>
  </widget>
