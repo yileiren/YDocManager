@@ -93,8 +93,23 @@ OTHER_FILES += \
     images/textEdit/lists/3.png \
     images/textEdit/lists/2.png \
     images/textEdit/lists/1.png \
-    images/textEdit/table/table.png \
-    images/textEdit/insertImage.png
+    images/textEdit/insertImage.png \
+    images/textEdit/table/dongshuai_36.jpg \
+    images/textEdit/table/dongshuai_35.jpg \
+    images/textEdit/table/dongshuai_34.jpg \
+    images/textEdit/table/dongshuai_28.jpg \
+    images/textEdit/table/dongshuai_24.jpg \
+    images/textEdit/table/dongshuai_23.jpg \
+    images/textEdit/table/dongshuai_20-26.jpg \
+    images/textEdit/table/dongshuai_18.jpg \
+    images/textEdit/table/dongshuai_17.jpg \
+    images/textEdit/table/dongshuai_16.jpg \
+    images/textEdit/table/dongshuai_15.jpg \
+    images/textEdit/table/dongshuai_13-33.jpg \
+    images/textEdit/table/dongshuai_09.jpg \
+    images/textEdit/table/dongshuai_07.jpg \
+    images/textEdit/table/dongshuai_05.jpg \
+    images/textEdit/table/dongshuai_03.jpg
 
 RC_FILE += myapp.rc
 

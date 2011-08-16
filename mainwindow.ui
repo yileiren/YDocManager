@@ -121,6 +121,21 @@
      <string>表格</string>
     </property>
     <addaction name="insertTableAction"/>
+    <addaction name="setTableAlignAction"/>
+    <addaction name="setTableBackGroundColorAction"/>
+    <addaction name="separator"/>
+    <addaction name="insertRowsAtTopAction"/>
+    <addaction name="insertRowsAtBottomAction"/>
+    <addaction name="insertColumnsAtBeginAction"/>
+    <addaction name="insertColumnsAtEndAction"/>
+    <addaction name="removeRowsAction"/>
+    <addaction name="removeColumnsAction"/>
+    <addaction name="separator"/>
+    <addaction name="mergeCellsAction"/>
+    <addaction name="splitCellAction"/>
+    <addaction name="setTableCellsPaddingAction"/>
+    <addaction name="setTableCellsSpacingAction"/>
+    <addaction name="setTableCellsBackGroundColorAction"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_3"/>
@@ -291,6 +306,21 @@
     <bool>false</bool>
    </attribute>
    <addaction name="insertTableAction"/>
+   <addaction name="setTableAlignAction"/>
+   <addaction name="setTableBackGroundColorAction"/>
+   <addaction name="separator"/>
+   <addaction name="insertRowsAtTopAction"/>
+   <addaction name="insertRowsAtBottomAction"/>
+   <addaction name="insertColumnsAtBeginAction"/>
+   <addaction name="insertColumnsAtEndAction"/>
+   <addaction name="removeRowsAction"/>
+   <addaction name="removeColumnsAction"/>
+   <addaction name="separator"/>
+   <addaction name="mergeCellsAction"/>
+   <addaction name="splitCellAction"/>
+   <addaction name="setTableCellsPaddingAction"/>
+   <addaction name="setTableCellsSpacingAction"/>
+   <addaction name="setTableCellsBackGroundColorAction"/>
   </widget>
   <action name="newDocAction">
    <property name="enabled">
@@ -496,7 +526,7 @@
   <action name="insertTableAction">
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/images/textEdit/table/table.png</normaloff>:/images/textEdit/table/table.png</iconset>
+     <normaloff>:/images/textEdit/table/table.jpg</normaloff>:/images/textEdit/table/table.jpg</iconset>
    </property>
    <property name="text">
     <string>插入表格</string>
@@ -509,6 +539,150 @@
    </property>
    <property name="text">
     <string>插入图片</string>
+   </property>
+  </action>
+  <action name="setTableAlignAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/setTableAlign.jpg</normaloff>:/images/textEdit/table/setTableAlign.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>设置表格对齐方式</string>
+   </property>
+  </action>
+  <action name="setTableBackGroundColorAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/setTableBackGroundColor.jpg</normaloff>:/images/textEdit/table/setTableBackGroundColor.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>设置表格背景色</string>
+   </property>
+  </action>
+  <action name="insertRowsAtTopAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/insertColumnAtTop.jpg</normaloff>:/images/textEdit/table/insertColumnAtTop.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>在上面插入新行</string>
+   </property>
+   <property name="toolTip">
+    <string>在光标所在行上面插入新行</string>
+   </property>
+  </action>
+  <action name="insertRowsAtBottomAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/insertColumnAtBottom.jpg</normaloff>:/images/textEdit/table/insertColumnAtBottom.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>在下面插入新行</string>
+   </property>
+   <property name="toolTip">
+    <string>在光标所在行下面插入新行</string>
+   </property>
+  </action>
+  <action name="insertColumnsAtBeginAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/insertRowAtBegin.jpg</normaloff>:/images/textEdit/table/insertRowAtBegin.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>在前面插入新列</string>
+   </property>
+   <property name="toolTip">
+    <string>在光标所在列前面插入新列</string>
+   </property>
+  </action>
+  <action name="insertColumnsAtEndAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/insertRowAtEnd.jpg</normaloff>:/images/textEdit/table/insertRowAtEnd.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>在后面插入新列</string>
+   </property>
+   <property name="toolTip">
+    <string>在光标所在列后面插入新列</string>
+   </property>
+  </action>
+  <action name="removeRowsAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/removeRow.jpg</normaloff>:/images/textEdit/table/removeRow.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>移除行</string>
+   </property>
+   <property name="toolTip">
+    <string>移除光标所在处或选中的行</string>
+   </property>
+  </action>
+  <action name="removeColumnsAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/removeColumn.jpg</normaloff>:/images/textEdit/table/removeColumn.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>移除列</string>
+   </property>
+   <property name="toolTip">
+    <string>移除光标所在处或选中的列</string>
+   </property>
+  </action>
+  <action name="mergeCellsAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/mergeCells.jpg</normaloff>:/images/textEdit/table/mergeCells.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>合并单元格</string>
+   </property>
+  </action>
+  <action name="splitCellAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/splitCell.jpg</normaloff>:/images/textEdit/table/splitCell.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>拆分单元格</string>
+   </property>
+  </action>
+  <action name="setTableCellsPaddingAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/setTableCellsPadding.jpg</normaloff>:/images/textEdit/table/setTableCellsPadding.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>设置内间距</string>
+   </property>
+   <property name="toolTip">
+    <string>设置单元格内间距</string>
+   </property>
+  </action>
+  <action name="setTableCellsSpacingAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/setTableCellsSpacing.jpg</normaloff>:/images/textEdit/table/setTableCellsSpacing.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>设置外间距</string>
+   </property>
+   <property name="toolTip">
+    <string>设置单元格外间距</string>
+   </property>
+  </action>
+  <action name="setTableCellsBackGroundColorAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/textEdit/table/setTableCellsBackGroundColor.jpg</normaloff>:/images/textEdit/table/setTableCellsBackGroundColor.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>设置单元格背景色</string>
+   </property>
+   <property name="toolTip">
+    <string>设置选中单元格的背景色</string>
    </property>
   </action>
  </widget>

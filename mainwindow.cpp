@@ -420,6 +420,7 @@ void MainWindow::on_openDocAction_triggered()
                 this->ui->editDocAction->setEnabled(true);
                 this->ui->saveDocAction->setEnabled(false);
                 this->ui->closeDocAction->setEnabled(false);
+                this->ui->openDocAction->setEnabled(false);
                 this->ui->yRichEditor->setReadOnly(true);
                 this->openingFile = info;
                 this->isChanged = false;
