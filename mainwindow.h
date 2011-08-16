@@ -99,6 +99,10 @@ private slots:
 
     void on_insertColumnsAtEndAction_triggered();
 
+    void on_removeRowsAction_triggered();
+
+    void on_removeColumnsAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 

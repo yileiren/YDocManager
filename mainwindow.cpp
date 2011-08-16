@@ -1059,3 +1059,24 @@ void MainWindow::on_insertColumnsAtEndAction_triggered()
         }
     }
 }
+
+void MainWindow::on_removeRowsAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->removeRows();
+    }
+}
+
+void MainWindow::on_removeColumnsAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->removeColumns();
+    }
+}
+
+void MainWindow::on_setColumnsWidthAction_triggered()
+{
+
+}
