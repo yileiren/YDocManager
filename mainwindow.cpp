@@ -1031,3 +1031,31 @@ void MainWindow::on_insertRowsAtBottomAction_triggered()
         }
     }
 }
+
+void MainWindow::on_insertColumnsAtBeginAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InitValue dlg;
+        if(QDialog::Accepted ==  dlg.exec())
+        {
+            this->ui->yRichEditor->insertColumns(this->ui->yRichEditor->getPositionCell().column,
+                                                 dlg.getInputValue(),
+                                                 false);
+        }
+    }
+}
+
+void MainWindow::on_insertColumnsAtEndAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InitValue dlg;
+        if(QDialog::Accepted ==  dlg.exec())
+        {
+            this->ui->yRichEditor->insertColumns(this->ui->yRichEditor->getPositionCell().column,
+                                                 dlg.getInputValue(),
+                                                 true);
+        }
+    }
+}

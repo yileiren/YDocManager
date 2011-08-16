@@ -95,6 +95,10 @@ private slots:
 
     void on_insertRowsAtBottomAction_triggered();
 
+    void on_insertColumnsAtBeginAction_triggered();
+
+    void on_insertColumnsAtEndAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
