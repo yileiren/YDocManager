@@ -5,6 +5,7 @@
 #include "forms/editfileinfo.h"
 #include "forms/choseimage.h"
 #include "forms/inserttable.h"
+#include "forms/settablealgin.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -973,6 +974,19 @@ void MainWindow::on_insertImageAction_triggered()
         if(QDialog::Accepted == choseImage.exec())
         {
             this->ui->yRichEditor->insertImage(tr(IMAGES_FILE_DIR) + tr("/") + choseImage.selectedText);
+        }
+    }
+}
+
+void MainWindow::on_setTableAlignAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        SetTableAlgin dlg;
+        dlg.setTableAlgin(this->ui->yRichEditor->getTableAlign());
+        if(QDialog::Accepted == dlg.exec())
+        {
+            this->ui->yRichEditor->setTableAlign(dlg.getTableAlign());
         }
     }
 }

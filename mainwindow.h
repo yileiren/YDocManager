@@ -87,6 +87,8 @@ private slots:
 
     void on_insertImageAction_triggered();
 
+    void on_setTableAlignAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
