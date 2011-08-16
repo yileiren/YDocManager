@@ -990,3 +990,15 @@ void MainWindow::on_setTableAlignAction_triggered()
         }
     }
 }
+
+void MainWindow::on_setTableBackGroundColorAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        QColorDialog colorDlg(this->ui->yRichEditor->getTableBackGroundColor(),this);
+        if(QDialog::Accepted ==  colorDlg.exec())
+        {
+            this->ui->yRichEditor->setTableBackGroundColor(colorDlg.selectedColor());
+        }
+    }
+}

@@ -89,6 +89,8 @@ private slots:
 
     void on_setTableAlignAction_triggered();
 
+    void on_setTableBackGroundColorAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
