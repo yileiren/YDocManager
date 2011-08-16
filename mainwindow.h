@@ -103,6 +103,8 @@ private slots:
 
     void on_removeColumnsAction_triggered();
 
+    void on_setColumnsWidthAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
