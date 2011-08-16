@@ -6,6 +6,7 @@
 #include "forms/choseimage.h"
 #include "forms/inserttable.h"
 #include "forms/settablealgin.h"
+#include "forms/initvalue.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -999,6 +1000,34 @@ void MainWindow::on_setTableBackGroundColorAction_triggered()
         if(QDialog::Accepted ==  colorDlg.exec())
         {
             this->ui->yRichEditor->setTableBackGroundColor(colorDlg.selectedColor());
+        }
+    }
+}
+
+void MainWindow::on_insertRowsAtTopAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InitValue dlg;
+        if(QDialog::Accepted ==  dlg.exec())
+        {
+            this->ui->yRichEditor->insertRows(this->ui->yRichEditor->getPositionCell().row,
+                                              dlg.getInputValue(),
+                                              false);
+        }
+    }
+}
+
+void MainWindow::on_insertRowsAtBottomAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InitValue dlg;
+        if(QDialog::Accepted ==  dlg.exec())
+        {
+            this->ui->yRichEditor->insertRows(this->ui->yRichEditor->getPositionCell().row,
+                                              dlg.getInputValue(),
+                                              true);
         }
     }
 }

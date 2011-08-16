@@ -91,6 +91,10 @@ private slots:
 
     void on_setTableBackGroundColorAction_triggered();
 
+    void on_insertRowsAtTopAction_triggered();
+
+    void on_insertRowsAtBottomAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 

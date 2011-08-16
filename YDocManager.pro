@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     forms/editfileinfo.cpp \
     forms/choseimage.cpp \
     forms/inserttable.cpp \
-    forms/settablealgin.cpp
+    forms/settablealgin.cpp \
+    forms/initvalue.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     forms/editfileinfo.h \
     forms/choseimage.h \
     forms/inserttable.h \
-    forms/settablealgin.h
+    forms/settablealgin.h \
+    forms/initvalue.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \
@@ -37,7 +39,8 @@ FORMS    += mainwindow.ui \
     forms/editfileinfo.ui \
     forms/choseimage.ui \
     forms/inserttable.ui \
-    forms/settablealgin.ui
+    forms/settablealgin.ui \
+    forms/initvalue.ui
 
 win32{
     debug{
