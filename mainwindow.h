@@ -209,6 +209,8 @@ private:
     void changeTextAligenAction();
 
     void showEvent(QShowEvent * e);
+
+    virtual void resizeEvent(QResizeEvent *);
 };
 
 #endif // MAINWINDOW_H

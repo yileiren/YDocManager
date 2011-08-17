@@ -351,8 +351,8 @@ void MainWindow::showEvent(QShowEvent *e)
         //创建状态显示设置状态显示Label
         this->statusLabel.setParent(this->ui->statusBar);
         this->statusLabel.setText(tr("就绪"));
-        this->statusLabel.setMinimumSize(this->ui->statusBar->width() - 500,10);
-        this->statusLabel.setMaximumSize(this->ui->statusBar->width() - 500,20);
+        this->statusLabel.setMinimumSize(this->width() - 500,10);
+        this->statusLabel.setMaximumSize(this->width() - 500,20);
         this->ui->statusBar->addWidget(&this->statusLabel);
 
         //显示文档名称
@@ -1079,4 +1079,10 @@ void MainWindow::on_removeColumnsAction_triggered()
 void MainWindow::on_setColumnsWidthAction_triggered()
 {
 
+}
+
+void MainWindow::resizeEvent(QResizeEvent * e)
+{
+    this->statusLabel.setMinimumSize(this->width() - 500,10);
+    this->statusLabel.setMaximumSize(this->width() - 500,20);
 }
