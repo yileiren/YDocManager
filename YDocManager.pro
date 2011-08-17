@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     forms/choseimage.cpp \
     forms/inserttable.cpp \
     forms/settablealgin.cpp \
-    forms/initvalue.cpp
+    forms/initvalue.cpp \
+    forms/setwidthvalue.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     forms/choseimage.h \
     forms/inserttable.h \
     forms/settablealgin.h \
-    forms/initvalue.h
+    forms/initvalue.h \
+    forms/setwidthvalue.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \
@@ -40,7 +42,8 @@ FORMS    += mainwindow.ui \
     forms/choseimage.ui \
     forms/inserttable.ui \
     forms/settablealgin.ui \
-    forms/initvalue.ui
+    forms/initvalue.ui \
+    forms/setwidthvalue.ui
 
 win32{
     debug{

@@ -7,6 +7,7 @@
 #include "forms/inserttable.h"
 #include "forms/settablealgin.h"
 #include "forms/initvalue.h"
+#include "forms/setwidthvalue.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -1078,7 +1079,19 @@ void MainWindow::on_removeColumnsAction_triggered()
 
 void MainWindow::on_setColumnsWidthAction_triggered()
 {
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        int w = this->ui->yRichEditor->getColumnsWidth()[this->ui->yRichEditor->getPositionCell().column].operator QVariant.toInt();
+        QTextLength::Type t = this->ui->yRichEditor->getColumnsWidth()[this->ui->yRichEditor->getPositionCell().column].type();
 
+        SetWidthValue dlg;
+        dlg.setValue(w);
+        dlg.setValueType(t);
+        if(QDialog::Accepted == dlg.exec())
+        {
+            this->ui->yRichEditor->setColumnsWidth(dlg.getValue(),dlg.getValueType());
+        }
+    }
 }
 
 void MainWindow::resizeEvent(QResizeEvent * e)
