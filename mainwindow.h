@@ -105,6 +105,10 @@ private slots:
 
     void on_setColumnsWidthAction_triggered();
 
+    void on_mergeCellsAction_triggered();
+
+    void on_splitCellAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 

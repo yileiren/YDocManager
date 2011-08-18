@@ -8,6 +8,7 @@
 #include "forms/settablealgin.h"
 #include "forms/initvalue.h"
 #include "forms/setwidthvalue.h"
+#include "forms/splitcellnum.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -1108,4 +1109,30 @@ void MainWindow::resizeEvent(QResizeEvent * e)
 {
     this->statusLabel.setMinimumSize(this->width() - 500,10);
     this->statusLabel.setMaximumSize(this->width() - 500,20);
+}
+
+void MainWindow::on_mergeCellsAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        this->ui->yRichEditor->mergeCells();
+    }
+}
+
+void MainWindow::on_splitCellAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        int r = this->ui->yRichEditor->getPositionCell().row;
+        int c = this->ui->yRichEditor->getPositionCell().column;
+
+        if(r >= 0 && c >= 0)
+        {
+            SplitCellNum dlg;
+            if(QDialog::Accepted == dlg.exec())
+            {
+                this->ui->yRichEditor->splitCell(r,c,dlg.getRowCount() - 1,dlg.getColumnCount() - 1);
+            }
+        }
+    }
 }
