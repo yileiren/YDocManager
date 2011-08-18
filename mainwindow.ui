@@ -308,6 +308,8 @@
    </attribute>
    <addaction name="insertTableAction"/>
    <addaction name="setTableAlignAction"/>
+   <addaction name="setTableCellsPaddingAction"/>
+   <addaction name="setTableCellsSpacingAction"/>
    <addaction name="setTableBackGroundColorAction"/>
    <addaction name="separator"/>
    <addaction name="insertRowsAtTopAction"/>
@@ -320,8 +322,6 @@
    <addaction name="separator"/>
    <addaction name="mergeCellsAction"/>
    <addaction name="splitCellAction"/>
-   <addaction name="setTableCellsPaddingAction"/>
-   <addaction name="setTableCellsSpacingAction"/>
    <addaction name="setTableCellsBackGroundColorAction"/>
   </widget>
   <action name="newDocAction">

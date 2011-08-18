@@ -109,6 +109,10 @@ private slots:
 
     void on_splitCellAction_triggered();
 
+    void on_setTableCellsPaddingAction_triggered();
+
+    void on_setTableCellsSpacingAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 

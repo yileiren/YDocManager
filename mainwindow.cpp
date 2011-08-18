@@ -1136,3 +1136,29 @@ void MainWindow::on_splitCellAction_triggered()
         }
     }
 }
+
+void MainWindow::on_setTableCellsPaddingAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InitValue dlg;
+        dlg.setInputValue(this->ui->yRichEditor->getTableCellsPadding());
+        if(QDialog::Accepted ==  dlg.exec())
+        {
+            this->ui->yRichEditor->setTableCellsPadding(dlg.getInputValue());
+        }
+    }
+}
+
+void MainWindow::on_setTableCellsSpacingAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        InitValue dlg;
+        dlg.setInputValue(this->ui->yRichEditor->getTableCellsSpacing());
+        if(QDialog::Accepted ==  dlg.exec())
+        {
+            this->ui->yRichEditor->setTableCellsSpacing(dlg.getInputValue());
+        }
+    }
+}
