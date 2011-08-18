@@ -87,7 +87,6 @@ OTHER_FILES += \
     images/appWindow/initWindowBackImage.png \
     images/tree/doc.png \
     images/tree/dir.png \
-    images/logo.gif \
     images/appWindow/initWindowBackImage.psd \
     images/textEdit/textunder.png \
     images/textEdit/textright.png \
@@ -109,22 +108,23 @@ OTHER_FILES += \
     images/textEdit/lists/2.png \
     images/textEdit/lists/1.png \
     images/textEdit/insertImage.png \
-    images/textEdit/table/dongshuai_36.jpg \
-    images/textEdit/table/dongshuai_35.jpg \
-    images/textEdit/table/dongshuai_34.jpg \
-    images/textEdit/table/dongshuai_28.jpg \
-    images/textEdit/table/dongshuai_24.jpg \
-    images/textEdit/table/dongshuai_23.jpg \
-    images/textEdit/table/dongshuai_20-26.jpg \
-    images/textEdit/table/dongshuai_18.jpg \
-    images/textEdit/table/dongshuai_17.jpg \
-    images/textEdit/table/dongshuai_16.jpg \
-    images/textEdit/table/dongshuai_15.jpg \
-    images/textEdit/table/dongshuai_13-33.jpg \
-    images/textEdit/table/dongshuai_09.jpg \
-    images/textEdit/table/dongshuai_07.jpg \
-    images/textEdit/table/dongshuai_05.jpg \
-    images/textEdit/table/dongshuai_03.jpg
+    images/textEdit/table/dongshuai_36.png \
+    images/textEdit/table/dongshuai_35.png \
+    images/textEdit/table/dongshuai_34.png \
+    images/textEdit/table/dongshuai_28.png \
+    images/textEdit/table/dongshuai_24.png \
+    images/textEdit/table/dongshuai_23.png \
+    images/textEdit/table/dongshuai_20-26.png \
+    images/textEdit/table/dongshuai_18.png \
+    images/textEdit/table/dongshuai_17.png \
+    images/textEdit/table/dongshuai_16.png \
+    images/textEdit/table/dongshuai_15.png \
+    images/textEdit/table/dongshuai_13-33.png \
+    images/textEdit/table/dongshuai_09.png \
+    images/textEdit/table/dongshuai_07.png \
+    images/textEdit/table/dongshuai_05.png \
+    images/textEdit/table/dongshuai_03.png \
+    images/logo.png
 
 RC_FILE += myapp.rc
 

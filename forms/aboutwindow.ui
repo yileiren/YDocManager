@@ -38,7 +38,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/logo.gif);</string>
+    <string notr="true">background-image: url(:/images/logo.png);</string>
    </property>
    <property name="text">
     <string/>

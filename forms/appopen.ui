@@ -93,7 +93,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/logo.gif);</string>
+     <string notr="true">image: url(:/images/logo.png);</string>
     </property>
    </widget>
   </widget>

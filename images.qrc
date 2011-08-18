@@ -10,7 +10,6 @@
         <file alias="appWindow/backImage.png">images/appWindow/initWindowBackImage.png</file>
         <file alias="tree/dir.png">images/tree/dir.png</file>
         <file alias="tree/doc.png">images/tree/doc.png</file>
-        <file alias="logo.gif">images/logo.gif</file>
         <file alias="textEdit/editredo.png">images/textEdit/editredo.png</file>
         <file alias="textEdit/editundo.png">images/textEdit/editundo.png</file>
         <file alias="textEdit/fileprint.png">images/textEdit/fileprint.png</file>
@@ -31,21 +30,22 @@
         <file alias="textEdit/lists/7.png">images/textEdit/lists/7.png</file>
         <file alias="textEdit/lists/8.png">images/textEdit/lists/8.png</file>
         <file alias="textEdit/insertImage.png">images/textEdit/insertImage.png</file>
-        <file alias="textEdit/table/insertColumnAtTop.jpg">images/textEdit/table/dongshuai_03.jpg</file>
-        <file alias="textEdit/table/insertColumnAtBottom.jpg">images/textEdit/table/dongshuai_05.jpg</file>
-        <file alias="textEdit/table/insertRowAtBegin.jpg">images/textEdit/table/dongshuai_07.jpg</file>
-        <file alias="textEdit/table/insertRowAtEnd.jpg">images/textEdit/table/dongshuai_09.jpg</file>
-        <file alias="textEdit/table/removeRow.jpg">images/textEdit/table/dongshuai_15.jpg</file>
-        <file alias="textEdit/table/removeColumn.jpg">images/textEdit/table/dongshuai_16.jpg</file>
-        <file alias="textEdit/table/mergeCells.jpg">images/textEdit/table/dongshuai_17.jpg</file>
-        <file alias="textEdit/table/splitCell.jpg">images/textEdit/table/dongshuai_18.jpg</file>
-        <file alias="textEdit/table/setTableCellsBackGroundColor.jpg">images/textEdit/table/dongshuai_20-26.jpg</file>
-        <file alias="textEdit/table/setTableCellsSpacing.jpg">images/textEdit/table/dongshuai_23.jpg</file>
-        <file alias="textEdit/table/setTableCellsPadding.jpg">images/textEdit/table/dongshuai_24.jpg</file>
-        <file alias="textEdit/table/setTableBackGroundColor.jpg">images/textEdit/table/dongshuai_28.jpg</file>
-        <file alias="textEdit/table/setColumnsWidth.jpg">images/textEdit/table/dongshuai_34.jpg</file>
-        <file alias="textEdit/table/setRowsHeigth.jpg">images/textEdit/table/dongshuai_35.jpg</file>
-        <file alias="textEdit/table/table.jpg">images/textEdit/table/dongshuai_36.jpg</file>
-        <file alias="textEdit/table/setTableAlign.jpg">images/textEdit/table/dongshuai_13-33.jpg</file>
+        <file alias="textEdit/table/insertRosAtTop.png">images/textEdit/table/dongshuai_03.png</file>
+        <file alias="textEdit/table/insertRowAtBottom.png">images/textEdit/table/dongshuai_05.png</file>
+        <file alias="textEdit/table/insertColumnAtBegin.png">images/textEdit/table/dongshuai_07.png</file>
+        <file alias="textEdit/table/insertColumnAtEnd.png">images/textEdit/table/dongshuai_09.png</file>
+        <file alias="textEdit/table/setTableAlign.png">images/textEdit/table/dongshuai_13-33.png</file>
+        <file alias="textEdit/table/removeRow.png">images/textEdit/table/dongshuai_15.png</file>
+        <file alias="textEdit/table/removeColumn.png">images/textEdit/table/dongshuai_16.png</file>
+        <file alias="textEdit/table/mergeCells.png">images/textEdit/table/dongshuai_17.png</file>
+        <file alias="textEdit/table/splitCell.png">images/textEdit/table/dongshuai_18.png</file>
+        <file alias="textEdit/table/setTableCellsBackGroundColor.png">images/textEdit/table/dongshuai_20-26.png</file>
+        <file alias="textEdit/table/setTableCellsSpacing.png">images/textEdit/table/dongshuai_23.png</file>
+        <file alias="textEdit/table/setTableCellsPadding.png">images/textEdit/table/dongshuai_24.png</file>
+        <file alias="textEdit/table/setTableBackGroundColor.png">images/textEdit/table/dongshuai_28.png</file>
+        <file alias="textEdit/table/setColumnsWidth.png">images/textEdit/table/dongshuai_34.png</file>
+        <file alias="textEdit/table/setRowsHeigth.png">images/textEdit/table/dongshuai_35.png</file>
+        <file alias="textEdit/table/table.png">images/textEdit/table/dongshuai_36.png</file>
+        <file alias="logo.png">images/logo.png</file>
     </qresource>
 </RCC>
