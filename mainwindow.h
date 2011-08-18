@@ -115,6 +115,8 @@ private slots:
 
     void on_setTableCellsBackGroundColorAction_triggered();
 
+    void on_exitAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -221,6 +223,8 @@ private:
     void showEvent(QShowEvent * e);
 
     virtual void resizeEvent(QResizeEvent *);
+
+    virtual void closeEvent(QCloseEvent * e);
 };
 
 #endif // MAINWINDOW_H

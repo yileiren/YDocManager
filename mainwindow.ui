@@ -186,6 +186,8 @@
    <addaction name="fontColorAction"/>
    <addaction name="backgroundColorAction"/>
    <addaction name="insertImageAction"/>
+   <addaction name="separator"/>
+   <addaction name="exitAction"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="contextMenuPolicy">

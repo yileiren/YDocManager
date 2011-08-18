@@ -18,6 +18,7 @@
 #include <QColorDialog>
 #include <QXmlStreamReader>
 #include <QFileInfo>
+#include <QCloseEvent>
 #include <exception>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -1173,4 +1174,21 @@ void MainWindow::on_setTableCellsBackGroundColorAction_triggered()
             this->ui->yRichEditor->setTableCellsBackGroundColor(colorDlg.selectedColor());
         }
     }
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    if(this->docAlowOpen())
+    {
+        e->accept();
+    }
+    else
+    {
+        e->ignore();
+    }
+}
+
+void MainWindow::on_exitAction_triggered()
+{
+    this->close();
 }
