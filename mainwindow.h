@@ -117,6 +117,10 @@ private slots:
 
     void on_exitAction_triggered();
 
+
+
+    void on_action_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -219,6 +223,12 @@ private:
 
     */
     void changeTextAligenAction();
+
+    /*!
+     \brief 显示关于窗口
+
+    */
+    void showAboutWindow();
 
     void showEvent(QShowEvent * e);
 

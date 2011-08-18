@@ -9,6 +9,7 @@
 #include "forms/initvalue.h"
 #include "forms/setwidthvalue.h"
 #include "forms/splitcellnum.h"
+#include "forms/aboutwindow.h"
 
 #include <QDesktopWidget>
 #include <QMessageBox>
@@ -1191,4 +1192,17 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::on_exitAction_triggered()
 {
     this->close();
+}
+
+void MainWindow::showAboutWindow()
+{
+    AboutWindow dlg;
+    dlg.systemInfo = this->systemInfo;
+    dlg.docInfo = this->docInfo;
+    dlg.exec();
+}
+
+void MainWindow::on_action_triggered()
+{
+    this->showAboutWindow();
 }

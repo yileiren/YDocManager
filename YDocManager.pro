@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     forms/settablealgin.cpp \
     forms/initvalue.cpp \
     forms/setwidthvalue.cpp \
-    forms/splitcellnum.cpp
+    forms/splitcellnum.cpp \
+    forms/aboutwindow.cpp
 
 HEADERS  += mainwindow.h \
     yricheditor.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
     forms/settablealgin.h \
     forms/initvalue.h \
     forms/setwidthvalue.h \
-    forms/splitcellnum.h
+    forms/splitcellnum.h \
+    forms/aboutwindow.h
 
 FORMS    += mainwindow.ui \
     forms/appopen.ui \
@@ -46,7 +48,8 @@ FORMS    += mainwindow.ui \
     forms/settablealgin.ui \
     forms/initvalue.ui \
     forms/setwidthvalue.ui \
-    forms/splitcellnum.ui
+    forms/splitcellnum.ui \
+    forms/aboutwindow.ui
 
 win32{
     debug{
