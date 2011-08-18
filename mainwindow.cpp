@@ -1081,15 +1081,25 @@ void MainWindow::on_setColumnsWidthAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        int w = this->ui->yRichEditor->getColumnsWidth()[this->ui->yRichEditor->getPositionCell().column].operator QVariant.toInt();
-        QTextLength::Type t = this->ui->yRichEditor->getColumnsWidth()[this->ui->yRichEditor->getPositionCell().column].type();
+        QVector<QTextLength> l = this->ui->yRichEditor->getColumnsWidth();
 
-        SetWidthValue dlg;
-        dlg.setValue(w);
-        dlg.setValueType(t);
-        if(QDialog::Accepted == dlg.exec())
+        if(l.count() > 0)
         {
-            this->ui->yRichEditor->setColumnsWidth(dlg.getValue(),dlg.getValueType());
+            int p = this->ui->yRichEditor->getPositionCell().column;
+
+            if(p >= 0)
+            {
+                int w = l[p].rawValue();
+                QTextLength::Type t = this->ui->yRichEditor->getColumnsWidth()[this->ui->yRichEditor->getPositionCell().column].type();
+
+                SetWidthValue dlg;
+                dlg.setValue(w);
+                dlg.setValueType(t);
+                if(QDialog::Accepted == dlg.exec())
+                {
+                    this->ui->yRichEditor->setColumnsWidth(dlg.getValue(),dlg.getValueType());
+                }
+            }
         }
     }
 }
