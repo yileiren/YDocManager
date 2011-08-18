@@ -1162,3 +1162,15 @@ void MainWindow::on_setTableCellsSpacingAction_triggered()
         }
     }
 }
+
+void MainWindow::on_setTableCellsBackGroundColorAction_triggered()
+{
+    if(!this->ui->yRichEditor->isReadOnly())
+    {
+        QColorDialog colorDlg(this->ui->yRichEditor->getTableCellBackGroundColor(),this);
+        if(QDialog::Accepted ==  colorDlg.exec())
+        {
+            this->ui->yRichEditor->setTableCellsBackGroundColor(colorDlg.selectedColor());
+        }
+    }
+}

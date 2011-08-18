@@ -113,6 +113,8 @@ private slots:
 
     void on_setTableCellsSpacingAction_triggered();
 
+    void on_setTableCellsBackGroundColorAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
