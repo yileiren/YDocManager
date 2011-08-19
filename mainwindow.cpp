@@ -352,6 +352,8 @@ void MainWindow::showEvent(QShowEvent *e)
 {
     if(!this->isShow)
     {
+        this->isShow = true;
+
         //创建状态显示设置状态显示Label
         this->statusLabel.setParent(this->ui->statusBar);
         this->statusLabel.setText(tr("就绪"));

@@ -24,7 +24,7 @@
 #define SYSTEM_PROGECT_FILE_TAG "progectFile"
 
 //默认系统信息
-#define DEFINE_SYSTEM_INFO_TEXT "<systemInfo>\n    <version value=\"0.1.0\" />\n    <progectFile value=\"document.ydc\" />\n    <documentPath value=\"document\" />\n</systemInfo>"
+#define DEFINE_SYSTEM_INFO_TEXT "<systemInfo>\n    <version value=\"0.1.1\" />\n    <progectFile value=\"document.ydc\" />\n    <documentPath value=\"document\" />\n</systemInfo>"
 
 //工程文件默认扩展名
 #define EXPANDED_NAME ".ydc"
