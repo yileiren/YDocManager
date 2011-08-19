@@ -84,6 +84,7 @@
     <addaction name="openDocAction"/>
     <addaction name="editDocAction"/>
     <addaction name="saveDocAction"/>
+    <addaction name="deleteDocAction"/>
     <addaction name="closeDocAction"/>
     <addaction name="separator"/>
     <addaction name="exitAction"/>
@@ -184,6 +185,7 @@
    <addaction name="editDocAction"/>
    <addaction name="saveDocAction"/>
    <addaction name="closeDocAction"/>
+   <addaction name="deleteDocAction"/>
    <addaction name="separator"/>
    <addaction name="undoAction"/>
    <addaction name="redoAction"/>
@@ -717,6 +719,18 @@
   <action name="action">
    <property name="text">
     <string>关于</string>
+   </property>
+  </action>
+  <action name="deleteDocAction">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/images/menu/file/delete.png</normaloff>:/images/menu/file/delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+   <property name="toolTip">
+    <string>删除选中的项目</string>
    </property>
   </action>
  </widget>

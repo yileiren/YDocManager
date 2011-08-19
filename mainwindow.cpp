@@ -609,6 +609,16 @@ bool MainWindow::openDocFile(const FileInfo *fileInfo)
 
 void MainWindow::on_treeWidget_itemSelectionChanged()
 {
+    //如果是根节点禁用删除功能
+    if(this->ui->treeWidget->selectedItems()[0] == this->rootItem)
+    {
+        this->ui->deleteDocAction->setEnabled(false);
+    }
+    else
+    {
+        this->ui->deleteDocAction->setEnabled(true);
+    }
+
     //获取当前选中的文件信息
     if(this->ui->treeWidget->selectedItems().count() > 0)
     {
@@ -1207,4 +1217,12 @@ void MainWindow::showAboutWindow()
 void MainWindow::on_action_triggered()
 {
     this->showAboutWindow();
+}
+
+void MainWindow::on_deleteDocAction_triggered()
+{
+    if(this->ui->treeWidget->selectedItems().count() > 0)
+    {
+
+    }
 }

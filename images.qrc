@@ -47,5 +47,6 @@
         <file alias="textEdit/table/setRowsHeigth.png">images/textEdit/table/dongshuai_35.png</file>
         <file alias="textEdit/table/table.png">images/textEdit/table/dongshuai_36.png</file>
         <file alias="logo.png">images/logo.png</file>
+        <file alias="menu/file/delete.png">images/menu/file/delete.png</file>
     </qresource>
 </RCC>

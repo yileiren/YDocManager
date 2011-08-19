@@ -124,7 +124,8 @@ OTHER_FILES += \
     images/textEdit/table/dongshuai_07.png \
     images/textEdit/table/dongshuai_05.png \
     images/textEdit/table/dongshuai_03.png \
-    images/logo.png
+    images/logo.png \
+    images/menu/file/delete.png
 
 RC_FILE += myapp.rc
 

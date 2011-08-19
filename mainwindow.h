@@ -121,6 +121,8 @@ private slots:
 
     void on_action_triggered();
 
+    void on_deleteDocAction_triggered();
+
 private:
     Ui::MainWindow *ui;
 
