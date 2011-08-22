@@ -232,6 +232,13 @@ private:
     */
     void showAboutWindow();
 
+    /*!
+     \brief 删除指定的项目
+
+     \param item 指定的项目
+    */
+    void deleteItem(QTreeWidgetItem * item);
+
     void showEvent(QShowEvent * e);
 
     virtual void resizeEvent(QResizeEvent *);

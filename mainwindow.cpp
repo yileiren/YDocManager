@@ -1223,6 +1223,7 @@ void MainWindow::on_deleteDocAction_triggered()
 {
     if(this->ui->treeWidget->selectedItems().count() > 0)
     {
-
+        //获取选中的项
+        QTreeWidgetItem *item = this->ui->treeWidget->selectedItems()[0];
     }
 }
