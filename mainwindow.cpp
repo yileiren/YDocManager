@@ -160,7 +160,20 @@ void MainWindow::deleteChildItem(QTreeWidgetItem *parent)
         //销毁文件信息
         QTreeWidgetItem *childItem = parent->child(0);
         parent->removeChild(childItem);
-        delete childItem->data(1,0).value<FileInfo *>();
+        FileInfo *info = childItem->data(1,0).value<FileInfo *>();
+
+        if(info == this->openingFile)
+        {
+            this->ui->closeDocAction->setEnabled(false);
+            this->ui->saveDocAction->setEnabled(false);
+            this->ui->openDocAction->setEnabled(false);
+            this->ui->yRichEditor->setHtml(tr(""));
+            this->ui->yRichEditor->setReadOnly(true);
+            this->openingFile = NULL;
+            this->isChanged = false;
+        }
+
+        delete info;
         delete childItem;
     }
     this->statusLabel.setText(tr("成功"));
