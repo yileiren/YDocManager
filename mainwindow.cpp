@@ -321,6 +321,7 @@ void MainWindow::on_newDocAction_triggered()
                     this->ui->treeWidget->selectedItems().at(0)->setExpanded(true);
                     this->ui->treeWidget->selectedItems().at(0)->setSelected(false);
                     item->setSelected(true);
+
                 }
                 else
                 {
@@ -609,19 +610,19 @@ bool MainWindow::openDocFile(const FileInfo *fileInfo)
 
 void MainWindow::on_treeWidget_itemSelectionChanged()
 {
-    //如果是根节点禁用删除功能
-    if(this->ui->treeWidget->selectedItems()[0] == this->rootItem)
-    {
-        this->ui->deleteDocAction->setEnabled(false);
-    }
-    else
-    {
-        this->ui->deleteDocAction->setEnabled(true);
-    }
-
     //获取当前选中的文件信息
     if(this->ui->treeWidget->selectedItems().count() > 0)
     {
+        //如果是根节点禁用删除功能
+        if(this->ui->treeWidget->selectedItems()[0] == this->rootItem)
+        {
+            this->ui->deleteDocAction->setEnabled(false);
+        }
+        else
+        {
+            this->ui->deleteDocAction->setEnabled(true);
+        }
+
         FileInfo *fileInfo = this->ui->treeWidget->selectedItems()[0]->data(1,0).value<FileInfo *>();
         if(FileInfo::dir == fileInfo->fileType)
         {
@@ -1221,13 +1222,136 @@ void MainWindow::on_action_triggered()
 
 void MainWindow::on_deleteDocAction_triggered()
 {
-//    if(this->ui->treeWidget->selectedItems().count() > 0)
-//    {
-//        //获取选中的项
-//        QTreeWidgetItem *item = this->ui->treeWidget->selectedItems()[0];
-//    }
+    if(this->ui->treeWidget->selectedItems().count() > 0)
+    {
+        //获取选中的项
+        QTreeWidgetItem *item = this->ui->treeWidget->selectedItems()[0];
+        QTreeWidgetItem *parentItem = item->parent();
 
-    this->deleteDir(tr("test"));
+        //获取选中的类型
+        FileInfo *info = item->data(1,0).value<FileInfo *>();
+
+        if(info->fileType == FileInfo::dir)
+        {
+            if(QMessageBox::Yes == QMessageBox::information(this,tr("提示"),
+                                     tr("删除目录将连同目录中的文件和子目录一并删除，是否继续？"),
+                                     QMessageBox::Yes | QMessageBox::No,QMessageBox::No))
+            {
+                //获取选中的目录
+                QString p = info->path + info->name;
+                if(this->deleteDir(p))
+                {
+                    parentItem->removeChild(item);
+                    this->deleteChildItem(item);
+                    delete item->data(1,0).value<FileInfo *>();
+                    delete item;
+                    this->writeDocInfoXML(parentItem);
+                }
+                else
+                {
+                    QMessageBox::information(this,tr("提示"),tr("删除失败！"));
+                }
+            }
+        }
+        else
+        {
+            if(QMessageBox::Yes == QMessageBox::information(this,tr("提示"),
+                                     tr("是否要删除选中的文档？"),
+                                     QMessageBox::Yes | QMessageBox::No,QMessageBox::No))
+            {
+                //删除图片
+                QString infoPath = info->path +
+                                    tr("/") + HTML_DOC_PATH +
+                                    tr("/") + IMAGES_FILE_DIR +
+                                    tr("/") + info->name + IMAGES_INFO_FILE_EXPANDED_NAME;
+                //检查文档信息
+                QFile docInfoFile;
+                docInfoFile.setFileName(infoPath);
+                if(docInfoFile.exists())
+                {
+                    //打开图像信息文档文件
+                    if(docInfoFile.open(QFile::ReadOnly))
+                    {
+                        //读取文档信息
+                        QXmlStreamReader xmlReader;
+                        xmlReader.setDevice(&docInfoFile);
+                        while(!xmlReader.atEnd())
+                        {
+                            if(xmlReader.isStartElement())
+                            {
+                                QString name = xmlReader.name().toString();
+                                if(name == IMAGE_FILE_INFO_TAG)
+                                {
+                                    QString imageFileName = info->path +
+                                                                tr("/") + HTML_DOC_PATH +
+                                                                tr("/") + IMAGES_FILE_DIR +
+                                                                tr("/") + xmlReader.attributes().value(QObject::tr(IMAGE_FILE_NAME_TAG)).toString();
+                                    QFile imageFile(imageFileName);
+                                    imageFile.remove();
+
+                                }
+
+                                xmlReader.readNext();
+                            }
+                            else
+                            {
+                                xmlReader.readNext();
+                            }
+                        }
+                        docInfoFile.close();
+                    }
+                    else
+                    {
+                        QMessageBox::information(this,tr("提示！"),tr("删除图片失败！"));
+                        return;
+                    }
+                }
+
+                //删除图片信息文件
+                docInfoFile.remove();
+
+                //删除html和txt文件
+                QFile newHtmlFile(info->path + HTML_DOC_PATH + tr("/") + info->name + tr(".html"));
+                if(!newHtmlFile.remove())
+                {
+                    QMessageBox::information(this,tr("提示！"),tr("删除html文件失败！"));
+                    return;
+                }
+
+                QFile newTxtFile(info->path + TEXT_DOC_PATH + tr("/") + info->name + tr(".txt"));
+                if(!newTxtFile.remove())
+                {
+                    QMessageBox::information(this,tr("提示！"),tr("删除txt文件失败！"));
+                    return;
+                }
+
+                //如果文档已经代开则关闭
+                if(this->openingFile == info)
+                {
+                    this->ui->closeDocAction->setEnabled(false);
+                    this->ui->saveDocAction->setEnabled(false);
+                    this->ui->openDocAction->setEnabled(false);
+                    this->ui->yRichEditor->setHtml(tr(""));
+                    this->ui->yRichEditor->setReadOnly(true);
+                    this->openingFile = NULL;
+                    this->isChanged = false;
+                }
+
+                //移除节点
+                parentItem->removeChild(item);
+                delete info;
+                delete item;
+                this->writeDocInfoXML(parentItem);
+            }
+
+            if(this->ui->treeWidget->selectedItems().count() > 0)
+            {
+                this->ui->treeWidget->selectedItems()[0]->setSelected(false);
+            }
+
+            parentItem->setSelected(true);
+        }
+    }
 }
 
 bool MainWindow::deleteDir(const QString &p)
