@@ -1221,9 +1221,52 @@ void MainWindow::on_action_triggered()
 
 void MainWindow::on_deleteDocAction_triggered()
 {
-    if(this->ui->treeWidget->selectedItems().count() > 0)
+//    if(this->ui->treeWidget->selectedItems().count() > 0)
+//    {
+//        //获取选中的项
+//        QTreeWidgetItem *item = this->ui->treeWidget->selectedItems()[0];
+//    }
+
+    this->deleteDir(tr("test"));
+}
+
+bool MainWindow::deleteDir(const QString &p)
+{
+    QDir d(p);
+    if(d.exists())
     {
-        //获取选中的项
-        QTreeWidgetItem *item = this->ui->treeWidget->selectedItems()[0];
+        QFileInfoList files = d.entryInfoList();
+        for(int i = 0;i < files.count();i++)
+        {
+            if(files.at(i).baseName() != tr(""))
+            {
+                if(files.at(i).isDir())
+                {
+                    if(!this->deleteDir(files.at(i).filePath()))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    QFile f(files.at(i).filePath());
+                    if(!f.remove())
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        QString dirName = d.dirName();
+        d.cdUp();
+        if(!d.rmdir(dirName))
+        {
+            QMessageBox::information(this,tr(""),d.dirName());
+            return false;
+        }
+
     }
+
+    return true;
 }

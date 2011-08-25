@@ -239,6 +239,15 @@ private:
     */
     void deleteItem(QTreeWidgetItem * item);
 
+    /*!
+     \brief 删除指定的文件夹，包括子文件夹。
+
+     \param p 要删除的文件夹路径
+
+     \return 成功返回true
+    */
+    bool deleteDir(const QString &p);
+
     void showEvent(QShowEvent * e);
 
     virtual void resizeEvent(QResizeEvent *);
