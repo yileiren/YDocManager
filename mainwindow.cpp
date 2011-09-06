@@ -283,7 +283,7 @@ void MainWindow::on_newDocAction_triggered()
     {
         if(FileInfo::dir == this->ui->treeWidget->selectedItems().at(0)->data(1,0).value<FileInfo *>()->fileType)
         {
-            EditFileInfo editFileInfo;
+            EditFileInfo editFileInfo(this);
             editFileInfo.parentFileInfo = this->ui->treeWidget->selectedItems().at(0)->data(1,0).value<FileInfo *>();
             if(QDialog::Accepted == editFileInfo.exec())
             {
@@ -983,7 +983,7 @@ void MainWindow::on_insertTableAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InsertTable dlg;
+        InsertTable dlg(this);
         if(QDialog::Accepted == dlg.exec())
         {
             this->ui->yRichEditor->insertTable(dlg.getRowCount(),
@@ -1000,7 +1000,7 @@ void MainWindow::on_insertImageAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        ChoseImage choseImage;
+        ChoseImage choseImage(this);
         choseImage.openingFile = this->openingFile;
         if(QDialog::Accepted == choseImage.exec())
         {
@@ -1013,7 +1013,7 @@ void MainWindow::on_setTableAlignAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        SetTableAlgin dlg;
+        SetTableAlgin dlg(this);
         dlg.setTableAlgin(this->ui->yRichEditor->getTableAlign());
         if(QDialog::Accepted == dlg.exec())
         {
@@ -1038,7 +1038,7 @@ void MainWindow::on_insertRowsAtTopAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InitValue dlg;
+        InitValue dlg(this);
         if(QDialog::Accepted ==  dlg.exec())
         {
             this->ui->yRichEditor->insertRows(this->ui->yRichEditor->getPositionCell().row,
@@ -1052,7 +1052,7 @@ void MainWindow::on_insertRowsAtBottomAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InitValue dlg;
+        InitValue dlg(this);
         if(QDialog::Accepted ==  dlg.exec())
         {
             this->ui->yRichEditor->insertRows(this->ui->yRichEditor->getPositionCell().row,
@@ -1066,7 +1066,7 @@ void MainWindow::on_insertColumnsAtBeginAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InitValue dlg;
+        InitValue dlg(this);
         if(QDialog::Accepted ==  dlg.exec())
         {
             this->ui->yRichEditor->insertColumns(this->ui->yRichEditor->getPositionCell().column,
@@ -1080,7 +1080,7 @@ void MainWindow::on_insertColumnsAtEndAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InitValue dlg;
+        InitValue dlg(this);
         if(QDialog::Accepted ==  dlg.exec())
         {
             this->ui->yRichEditor->insertColumns(this->ui->yRichEditor->getPositionCell().column,
@@ -1156,7 +1156,7 @@ void MainWindow::on_splitCellAction_triggered()
 
         if(r >= 0 && c >= 0)
         {
-            SplitCellNum dlg;
+            SplitCellNum dlg(this);
             if(QDialog::Accepted == dlg.exec())
             {
                 this->ui->yRichEditor->splitCell(r,c,dlg.getRowCount() - 1,dlg.getColumnCount() - 1);
@@ -1169,7 +1169,7 @@ void MainWindow::on_setTableCellsPaddingAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InitValue dlg;
+        InitValue dlg(this);
         dlg.setInputValue(this->ui->yRichEditor->getTableCellsPadding());
         if(QDialog::Accepted ==  dlg.exec())
         {
@@ -1182,7 +1182,7 @@ void MainWindow::on_setTableCellsSpacingAction_triggered()
 {
     if(!this->ui->yRichEditor->isReadOnly())
     {
-        InitValue dlg;
+        InitValue dlg(this);
         dlg.setInputValue(this->ui->yRichEditor->getTableCellsSpacing());
         if(QDialog::Accepted ==  dlg.exec())
         {
@@ -1222,7 +1222,7 @@ void MainWindow::on_exitAction_triggered()
 
 void MainWindow::showAboutWindow()
 {
-    AboutWindow dlg;
+    AboutWindow dlg(this);
     dlg.systemInfo = this->systemInfo;
     dlg.docInfo = this->docInfo;
     dlg.exec();
