@@ -53,11 +53,11 @@ FORMS    += mainwindow.ui \
 
 win32{
     debug{
-        LIBS += D:/MyProject/YQtDesignerPlugin-build-desktop/YRichEditor/debug/libYRichEditorPlugin.a
+        LIBS += D:/Progect/Qt/YDocManager/YDocManager/YRichEditor/win32/debug/libYRichEditorPlugin.a
     }
 
     release{
-        LIBS += D:/MyProject/YQtDesignerPlugin-build-desktop/YRichEditor/release/libYRichEditorPlugin.a
+        LIBS += D:/Progect/Qt/YDocManager/YDocManager/YRichEditor/win32/release/libYRichEditorPlugin.a
     }
 }
 
