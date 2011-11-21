@@ -112,6 +112,7 @@ typedef struct
     QString path; /*!< 所在路径 */
     QString title; /*!< 文件标题 */
     QDateTime createTime; /*!< 创建时间 */
+    unsigned int childCount; /*!< 子节点个数 */
 }FileInfo;
 Q_DECLARE_METATYPE(FileInfo);
 Q_DECLARE_METATYPE(FileInfo *);

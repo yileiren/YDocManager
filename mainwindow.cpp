@@ -109,6 +109,7 @@ void MainWindow::readChildItem(QTreeWidgetItem *parent)
                                                                     tr(DEFINE_ROOT_DOC_XML_NAME) + tr(DEFINE_DOC_INFO_XML_EXPANDED_NAME));
 
         //循环设置节点
+        fileInfo->childCount = (unsigned int)filesInfo.size();
         for(std::vector<FileInfo>::size_type s = 0;s < filesInfo.size();s++)
         {
             QTreeWidgetItem * item = new QTreeWidgetItem(parent);
@@ -411,6 +412,7 @@ void MainWindow::createRootItem()
     fileInfo->name = this->systemInfo->documentPath;
     fileInfo->path = tr("");
     fileInfo->title = this->docInfo->name;
+    fileInfo->childCount = 0;
 
     this->rootItem = new QTreeWidgetItem(this->ui->treeWidget);
     this->rootItem->setText(0,fileInfo->title);
@@ -645,7 +647,7 @@ void MainWindow::on_treeWidget_itemSelectionChanged()
 
         if(FileInfo::doc == fileInfo->fileType)
         {
-            if(this->openingFile != NULL && this->openingFile->name == fileInfo->name)
+            if(this->openingFile != NULL && this->openingFile == fileInfo)
             {
                 this->ui->openDocAction->setEnabled(false);//当选中的文档已经打开禁用打开
             }
