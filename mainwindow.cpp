@@ -315,6 +315,7 @@ void MainWindow::on_newDocAction_triggered()
                         if(!this->writeDocFile(editFileInfo.fileInfo))
                         {
                             QMessageBox::information(this,tr("提示"),tr("创建文档失败！"),QMessageBox::Ok);
+                            this->ui->treeWidget->selectedItems().at(0)->data(1,0).value<FileInfo *>()->childCount--;
                             this->ui->treeWidget->selectedItems().at(0)->removeChild(item);
                             this->ui->yRichEditor->setReadOnly(true);
                             delete editFileInfo.fileInfo;
